@@ -1,0 +1,48 @@
+{
+  "site": {
+    "title": "Marzellus",
+    "base_url": "https://marzellusco.com/",
+    "base_path": "/",
+    "trailing_slash": false,
+    "favicon": "/images/favicon.png",
+    "logo": "/images/marzellus-logo.jpg",
+    "logo_darkmode": "/images/marzellus-logo.jpg",
+    "logo_width": "110",
+    "logo_height": "80",
+    "logo_text": "Marzellus"
+  },
+
+  "settings": {
+    "search": true,
+    "account": true,
+    "sticky_header": true,
+    "theme_switcher": true,
+    "default_theme": "system"
+  },
+
+  "params": {
+    "contact_form_action": "#",
+    "copyright": "Designed And Developed by [Cobalt Web Technologies](https://www.cobaltweb.tech/)"
+  },
+
+  "navigation_button": {
+    "enable": true,
+    "label": "Get Started",
+    "link": "https://www.cobaltweb.tech/"
+  },
+
+  "metadata": {
+    "meta_author": "Marzellus",
+    "meta_image": "/images/og-image.png",
+    "meta_description": "Marzellus products"
+  },
+
+  "shopify": {
+    "currencySymbol": "$",
+    "currencyCode": "USD",
+    "collections": {
+      "hero_slider": "hidden-homepage-carousel",
+      "featured_products": "featured-products"
+    }
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "main": [
+    {
+      "name": "facebook",
+      "icon": "FaFacebookF",
+      "link": "#"
+    },
+    {
+      "name": "twitter",
+      "icon": "FaXTwitter",
+      "link": "#"
+    },
+    {
+      "name": "instagram",
+      "icon": "FaInstagram",
+      "link": "#"
+    },
+    {
+      "name": "tiktok",
+      "icon": "FaTiktok",
+      "link": "#"
+    }
+  ]
+}
