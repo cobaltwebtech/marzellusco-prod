@@ -22,8 +22,8 @@ package-lock.json
 # macOS-specific files
 .DS_Store
 
-# ignore .astro directory
+# ignore directories
 .astro
-
+.yarn
 .netlify
 .vercel

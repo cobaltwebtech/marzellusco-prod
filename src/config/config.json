@@ -4,12 +4,7 @@
     "base_url": "https://marzellusco.com/",
     "base_path": "/",
     "trailing_slash": false,
-    "favicon": "/images/favicon.png",
-    "logo": "/images/marzellus-logo.jpg",
-    "logo_darkmode": "/images/marzellus-logo.jpg",
-    "logo_width": "110",
-    "logo_height": "80",
-    "logo_text": "Marzellus"
+    "favicon": "/images/favicon.png"
   },
 
   "settings": {
@@ -22,13 +17,13 @@
 
   "params": {
     "contact_form_action": "#",
-    "copyright": "Designed And Developed by [Cobalt Web Technologies](https://www.cobaltweb.tech/)"
+    "copyright": "Marzellus"
   },
 
   "navigation_button": {
     "enable": true,
     "label": "Get Started",
-    "link": "https://www.cobaltweb.tech/"
+    "link": "/"
   },
 
   "metadata": {

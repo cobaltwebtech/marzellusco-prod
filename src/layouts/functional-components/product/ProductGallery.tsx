@@ -119,10 +119,8 @@ const ProductGallery = ({ images }: { images: ImageItem[] }) => {
             </SwiperSlide>
           ))}
           <div
-            className={`hidden lg:block w-full absolute top-1/2 -translate-y-1/2 z-10 px-6 text-dark ${isHovered
-              ? "opacity-100 transition-opacity duration-300 ease-in-out"
-              : "opacity-0 transition-opacity duration-300 ease-in-out"
-              }`}
+            id="navigation"
+            className={`block w-full absolute top-1/2 -translate-y-1/2 z-10 px-6 text-dark`}
           >
             <div
               ref={prevRef}

@@ -33,10 +33,11 @@ export interface Props {
   image?: string;
   noindex?: boolean;
   canonical?: string;
+  isHomePage?: boolean;
 }
 
 // destructure frontmatter
-const { title, meta_title, description, image, noindex, canonical } =
+const { title, meta_title, description, image, noindex, canonical, isHomePage } =
   Astro.props;
 ---
 
@@ -66,7 +67,7 @@ const { title, meta_title, description, image, noindex, canonical } =
       config={[
         {
           src: [],
-          preload: false,
+          preload: true,
           display: "swap",
           name: fontPrimary!,
           fallback: "sans-serif",
@@ -75,7 +76,7 @@ const { title, meta_title, description, image, noindex, canonical } =
         },
         {
           src: [],
-          preload: false,
+          preload: true,
           display: "swap",
           name: fontSecondary!,
           fallback: "sans-serif",
@@ -95,6 +96,9 @@ const { title, meta_title, description, image, noindex, canonical } =
     <title>
       {plainify(meta_title ? meta_title : title ? title : config.site.title)}
     </title>
+
+    <!-- preconnect third party resources -->
+    {isHomePage && (<link rel="preconnect" href="https://iframe.mediadelivery.net" />)}
 
     <!-- canonical url -->
     {canonical && <link rel="canonical" href={canonical} item-prop="url" />}

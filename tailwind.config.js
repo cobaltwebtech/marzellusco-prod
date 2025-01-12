@@ -74,6 +74,15 @@ module.exports = {
         primary: ["var(--font-primary)", fontPrimaryType],
         secondary: ["var(--font-secondary)", fontSecondaryType],
       },
+      keyframes: {
+        fadeIn: {
+          from: { opacity: 0 },
+          to: { opacity: 1 },
+        },
+      },
+      animation: {
+        'fade-in': 'fadeIn 4s cubic-bezier(0.32, 0, 0.67, 0)',
+      },
     },
   },
   plugins: [

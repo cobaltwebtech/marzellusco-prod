@@ -1,22 +1,19 @@
 ---
 import FeaturedProducts from "@/components/FeaturedProducts.astro";
-import config from "@/config/config.json";
 import { AddToCart } from "@/functional-components/cart/AddToCart";
 import ProductGallery from "@/functional-components/product/ProductGallery";
 import ShowTags from "@/functional-components/product/ShowTags";
 import Tabs from "@/functional-components/product/Tabs";
 import { VariantSelector } from "@/functional-components/product/VariantSelector";
+import PaymentTypes from "@/functional-components/PaymentTypes";
 import SocialShare from "@/functional-components/SocialShare";
-import Base from "@/layouts/Base.astro";
-import { getProduct, getProductRecommendations } from "@/lib/shopify";
-import { getEntry } from "astro:content";
 import Price from "@/functional-components/Price";
+import Base from "@/layouts/Base.astro";
+import Breadcrumbs from "@/components/Breadcrumbs.astro";
+import { getProduct, getProductRecommendations } from "@/lib/shopify";
 
 const { slug } = Astro.params;
 const product = await getProduct(slug as string);
-
-const { data } = await getEntry("sections", "payments-and-delivery");
-const { payment_methods, estimated_delivery } = data;
 
 if (!product) {
   return Astro.redirect("/404");
@@ -37,11 +34,12 @@ const {
 
 const relatedProducts = await getProductRecommendations(id);
 const defaultVariantId = variants.length > 0 ? variants[0].id : undefined;
-
-const { currencySymbol } = config.shopify;
 ---
 
 <Base>
+  <Breadcrumbs className="container my-8"/>
+
+  {/* Product details section  */}
   <section class="md:section-sm">
     <div class="container">
       <div class="row justify-center">
@@ -99,34 +97,14 @@ const { currencySymbol } = config.shopify;
             />
           </div>
 
-          <div class="mb-8 md:mb-10">
-            <p
-              class="p-2 max-md:text-sm rounded-md bg-theme-light dark:bg-darkmode-theme-light inline"
-            >
-              {estimated_delivery}
-            </p>
-          </div>
-
           <div class="flex flex-wrap items-center gap-3">
-            <h5 class="max-md:text-base">Payment:</h5>
-            {
-              payment_methods?.map(
-                (payment: { name: string; image_url: string }) => (
-                  <img
-                    src={payment.image_url}
-                    alt={payment.name}
-                    width={44}
-                    height={32}
-                  />
-                )
-              )
-            }
+            <PaymentTypes client:only="react" />
           </div>
 
           <hr class="my-6 border border-border dark:border-light" />
 
           <div class="flex gap-3 items-center mb-6">
-            <h5 class="max-md:text-base">Share:</h5>
+            <h5 class="max-md:text-md">Share to socials:</h5>
             <SocialShare
               socialName={title}
               className="social-icons"

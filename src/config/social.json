@@ -3,22 +3,12 @@
     {
       "name": "facebook",
       "icon": "FaFacebookF",
-      "link": "#"
-    },
-    {
-      "name": "twitter",
-      "icon": "FaXTwitter",
-      "link": "#"
+      "link": "https://www.facebook.com/marzellusco"
     },
     {
       "name": "instagram",
       "icon": "FaInstagram",
-      "link": "#"
-    },
-    {
-      "name": "tiktok",
-      "icon": "FaTiktok",
-      "link": "#"
+      "link": "https://www.instagram.com/marzellusco/"
     }
   ]
 }

@@ -1,11 +1,10 @@
 ---
 import Logo from "@/components/Logo.astro";
-import config from "@/config/config.json";
 import menu from "@/config/menu.json";
 import social from "@/config/social.json";
 import DynamicIcon from "@/helpers/DynamicIcon";
-import { markdownify } from "@/lib/utils/textConverter";
-const { copyright } = config.params;
+
+const currentYear = new Date().getFullYear();
 
 export interface ISocial {
   name: string;
@@ -65,8 +64,14 @@ export interface ISocial {
           }
         </ul>
 
-        <p class="text-sm font-light" set:html={markdownify(copyright)} />
+        <p class="text-sm font-light">
+          &copy;<span id="copyright-year">{currentYear}</span> Marzellus - All Rights Reserved
+        </p>
       </div>
     </div>
   </div>
+  <!-- Set current year with client-side script -->
+  <script>
+    document.getElementById('copyright-year').textContent = new Date().getFullYear().toString();
+  </script>
 </footer>

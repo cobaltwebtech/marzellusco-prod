@@ -15,10 +15,9 @@ export default defineConfig({
   site: config.site.base_url ? config.site.base_url : "http://examplesite.com",
   base: config.site.base_path ? config.site.base_path : "/",
   trailingSlash: config.site.trailing_slash ? "always" : "never",
+  prefetch: true,
   output: "server",
-
   image: {},
-
   vite: {
     css: {
       preprocessorOptions: {
@@ -28,7 +27,6 @@ export default defineConfig({
       },
     },
   },
-
   integrations: [
     react(),
     sitemap(),
@@ -46,7 +44,6 @@ export default defineConfig({
     }),
     mdx(),
   ],
-
   markdown: {
     remarkPlugins: [
       remarkToc,
@@ -63,6 +60,5 @@ export default defineConfig({
     },
     extendDefaultPlugins: true,
   },
-
   adapter: vercel(),
 });

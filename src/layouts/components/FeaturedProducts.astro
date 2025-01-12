@@ -1,5 +1,4 @@
 ---
-import config from "@/config/config.json";
 import { AddToCart } from "@/functional-components/cart/AddToCart";
 import type { Product } from "@/lib/shopify/types";
 import Price from "@/functional-components/Price";
@@ -9,7 +8,6 @@ interface Props {
 }
 
 const { products } = Astro.props;
-const { currencySymbol } = config.shopify;
 ---
 
 <div class="row">

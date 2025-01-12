@@ -11,17 +11,9 @@
     {
       "name": "Contact",
       "url": "/contact"
-    },
-    {
-      "name": "About Us",
-      "url": "/about"
     }
   ],
   "footer": [
-    {
-      "name": "About",
-      "url": "/about"
-    },
     {
       "name": "Products",
       "url": "/products"

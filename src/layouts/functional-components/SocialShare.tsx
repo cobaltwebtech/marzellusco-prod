@@ -45,24 +45,24 @@ const SocialShare: React.FC<{ socialName: string; className: string; pathname: s
       <li>
         <a
           aria-label={socialName}
-          href={`https://twitter.com/intent/tweet?text=${baseUrl}${pathname}`}
+          href={`https://bsky.app/intent/compose?text=Check%20this%20out%20%0A${baseUrl}${pathname}`}
           target="_blank"
           rel="noopener noreferrer nofollow"
         >
           <span className="sr-only">{socialName}</span>
-          <DynamicIcon className="inline-block" icon={"FaXTwitter"} />
+          <DynamicIcon className="inline-block" icon={"FaBluesky"} />
         </a>
       </li>
 
       <li>
         <a
           aria-label={socialName}
-          href={`https://www.linkedin.com/shareArticle?mini=true&url=${baseUrl}${pathname}`}
+          href={`https://twitter.com/intent/tweet?text=${baseUrl}${pathname}`}
           target="_blank"
           rel="noopener noreferrer nofollow"
         >
           <span className="sr-only">{socialName}</span>
-          <DynamicIcon className="inline-block" icon={"FaLinkedinIn"} />
+          <DynamicIcon className="inline-block" icon={"FaXTwitter"} />
         </a>
       </li>
 

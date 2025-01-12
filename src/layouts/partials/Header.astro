@@ -138,7 +138,7 @@ const isParentActive = (children: any[]) => {
                         "nav-link block",
                         "py-2 px-3 rounded-lg transition-colors",
                         isMenuItemActive(menuItem.url) &&
-                          "text-primary font-medium",
+                          "text-primary italic",
                       ]}
                     >
                       {menuItem.name}
@@ -150,7 +150,7 @@ const isParentActive = (children: any[]) => {
 
             {
               navigation_button.enable && (
-                <li class="mt-4 inline-block lg:hidden mr-4 md:mr-6">
+                <li class="mt-4 inline-block mr-4 md:mr-6">
                   <a
                     class="btn btn-outline-primary btn-sm"
                     href={navigation_button.link}
@@ -165,7 +165,7 @@ const isParentActive = (children: any[]) => {
       </div>
     </div>
 
-    <div class="max-lg:mt-4 w-full lg:w-[45%] xl:w-[60%] lg:order-2 order-3">
+    <div class="max-lg:mt-8 w-full lg:w-[45%] xl:w-[60%] lg:order-2 order-3">
       {settings.search && <SearchBar client:load />}
     </div>
 
