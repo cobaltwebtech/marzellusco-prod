@@ -19,7 +19,7 @@
         "primary": "#fff",
         "body": "#252525",
         "border": "#3E3E3E",
-        "theme_light": "#222222",
+        "theme_light": "#404040",
         "theme_dark": "#000"
       },
       "text_color": {

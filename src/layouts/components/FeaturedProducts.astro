@@ -2,6 +2,7 @@
 import { AddToCart } from "@/functional-components/cart/AddToCart";
 import type { Product } from "@/lib/shopify/types";
 import Price from "@/functional-components/Price";
+import DynamicIcon from "@/helpers/DynamicIcon";
 
 interface Props {
   products: Product[];
@@ -75,7 +76,7 @@ const { products } = Astro.props;
 </div>
 
 <div class="flex justify-center">
-  <a class="btn btn-sm md:btn-lg btn-primary font-medium" href="/products">
-    + See All Products
+  <a class="inline-flex items-center justify-center gap-x-2 btn btn-sm md:btn-lg btn-primary font-medium" href="/products">
+    <DynamicIcon className="w-6 h-auto" icon={"FaBagShopping"} /> See More Products
   </a>
 </div>

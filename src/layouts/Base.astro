@@ -99,6 +99,7 @@ const { title, meta_title, description, image, noindex, canonical, isHomePage } 
 
     <!-- preconnect third party resources -->
     {isHomePage && (<link rel="preconnect" href="https://iframe.mediadelivery.net" />)}
+    <link rel="preconnect" href="https://cdn.shopify.com" />
 
     <!-- canonical url -->
     {canonical && <link rel="canonical" href={canonical} item-prop="url" />}

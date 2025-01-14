@@ -1,13 +1,13 @@
 .btn {
-  @apply inline-block rounded-md border border-transparent px-5 py-2 font-semibold capitalize transition;
+  @apply inline-block rounded-md border border-transparent px-6 py-2 font-semibold capitalize transition;
   &-sm {
-    @apply px-4 py-1.5 text-sm font-medium;
+    @apply px-6 py-2 text-base font-semibold;
   }
   &-md {
-    @apply px-8 py-4 text-xl font-medium;
+    @apply px-8 py-4 text-xl font-semibold;
   }
   &-lg {
-    @apply px-12 py-4 text-xl;
+    @apply px-12 py-4 text-xl font-semibold;
   }
 }
 

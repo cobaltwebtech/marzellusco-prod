@@ -10,13 +10,6 @@ import VideoHero from "@/components/VideoHero.astro";
 
 
 const { collections } = config.shopify;
-
-// Fetch slider images for the HeroSlider
-const sliderImages = await getCollectionProducts({
-  collection: collections.hero_slider,
-});
-const heroProducts = sliderImages.products;
-
 const collectionProducts = await getCollections();
 
 // Fetch featured products
@@ -47,7 +40,7 @@ const { products: featuredProducts } = await getCollectionProducts({
   <!-- Slider -->
   <section>
     <div class="container">
-      <div class="bg-gradient py-10 mb-6 md:mb-14 rounded-md">
+      <div class="bg-theme-light dark:bg-darkmode-theme-light py-10 mb-6 md:mb-14 rounded-md">
         <Slider client:load />
       </div>
     </div>

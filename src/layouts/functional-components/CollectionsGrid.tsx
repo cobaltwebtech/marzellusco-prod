@@ -38,7 +38,7 @@ const CollectionsGrid = ({ collections }: { collections: any }) => {
                         {title}
                     </a>
                     </h3>
-                    <p className="text-light dark:text-darkmode-light text-xs md:text-xl">
+                    <p className="text-light dark:text-darkmode-light text-sm md:text-xl">
                     {item.products?.edges.length} items
                     </p>
                 </div>
