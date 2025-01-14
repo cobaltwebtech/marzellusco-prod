@@ -14,8 +14,8 @@ const Slider = () => {
       <>
         <Swiper
             autoplay={{
-                delay: 3000, // Delay between transitions (in milliseconds)
-                disableOnInteraction: false // Continue autoplay even after user interaction
+              delay: 3000, // Delay between transitions (in milliseconds)
+              pauseOnMouseEnter: true // Pause when user interacts with the slider
             }}
             navigation={true}
             pagination={{
@@ -110,7 +110,7 @@ const Slider = () => {
                         </div>
                     </div>
 
-                    <div className="sm:col-12 lg:col-6">
+                    <div className="sm:col-12 lg:col-6 max-h-[700px]">
                         <img
                             src="/images/slider-images/slider-3.avif"
                             className="mx-auto w-[388px] lg:w-full"
