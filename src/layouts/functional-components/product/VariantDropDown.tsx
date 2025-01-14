@@ -1,16 +1,35 @@
 import React, { useState, useRef, useEffect } from "react";
 
-const VariantDropDown = ({ sizeOption }: any) => {
+interface VariantDropDownProps {
+  sizeOption: {
+    name: string;
+    values: string[];
+  };
+  selectedSize: string | undefined;
+  onSizeChange: (value: string) => void;
+  combinations: {
+    id: string;
+    availableForSale: boolean;
+    [key: string]: string | boolean;
+  }[];
+  selectedOptions: Record<string, string | undefined>;
+}
+
+const VariantDropDown: React.FC<VariantDropDownProps> = ({ 
+  sizeOption, 
+  selectedSize, 
+  onSizeChange, 
+  combinations, 
+  selectedOptions 
+}) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [selected, setSelected] = useState("Select One");
+  const [selected, setSelected] = useState(selectedSize || "Select Size");
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   const updateUrl = (param: string, value: string) => {
     const searchParams = new URLSearchParams(window.location.search);
     searchParams.set(param.toLowerCase(), value);
     const newUrl = `${window.location.pathname}?${searchParams.toString()}`;
-
-    // Replace the URL without reloading the page
     window.history.replaceState({}, "", newUrl);
   };
 
@@ -18,19 +37,10 @@ const VariantDropDown = ({ sizeOption }: any) => {
     setSelected(value);
     updateUrl(sizeOption.name, value);
     setIsOpen(false);
+    onSizeChange(value);
   };
 
   useEffect(() => {
-    const setInitialSizeFromUrl = () => {
-      const searchParams = new URLSearchParams(window.location.search);
-      const sizeParam = searchParams.get(sizeOption.name.toLowerCase());
-      if (sizeParam && sizeOption.values.includes(sizeParam)) {
-        setSelected(sizeParam);
-      }
-    };
-
-    setInitialSizeFromUrl();
-
     const handleClickOutside = (event: MouseEvent) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
         setIsOpen(false);
@@ -39,13 +49,21 @@ const VariantDropDown = ({ sizeOption }: any) => {
 
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, [sizeOption]);
+  }, []);
+
+  useEffect(() => {
+    if (selectedSize) {
+      setSelected(selectedSize);
+    }
+  }, [selectedSize]);
 
   return (
     <div className="w-72 relative" ref={dropdownRef}>
       <button
         className="w-full py-2 pl-3 pr-10 text-left bg-theme-light rounded-md cursor-pointer sm:text-sm focus:outline-none"
         onClick={() => setIsOpen(!isOpen)}
+        aria-haspopup="listbox"
+        aria-expanded={isOpen}
       >
         <span className="block truncate text-light">{selected}</span>
         <span className="absolute inset-y-0 right-0 flex items-center pr-2">
@@ -65,16 +83,32 @@ const VariantDropDown = ({ sizeOption }: any) => {
       </button>
 
       {isOpen && (
-        <ul className="absolute z-20 mt-1 max-h-60 w-full bg-white shadow-lg rounded-md overflow-auto ring-1 ring-black/5 focus:outline-none">
-          {sizeOption?.values?.map((size: string) => (
-            <li
-              key={size}
-              className="py-2 px-4 cursor-pointer hover:bg-light hover:text-white text-light"
-              onClick={() => handleSizeChanged(size)}
-            >
-              {size}
-            </li>
-          ))}
+        <ul className="absolute z-20 mt-1 max-h-60 w-full bg-white shadow-lg rounded-md overflow-auto ring-1 ring-black/5 focus:outline-none" role="listbox">
+          {sizeOption.values.map((size: string) => {
+            const isAvailable = combinations.some((combination) => {
+              const matchesSelectedOptions = Object.entries(selectedOptions).every(
+                ([key, value]) => key === sizeOption.name.toLowerCase() || combination[key] === value
+              );
+              return (
+                matchesSelectedOptions &&
+                combination[sizeOption.name.toLowerCase()] === size &&
+                combination.availableForSale
+              );
+            });
+            return (
+              <li
+                key={size}
+                className={`py-2 px-4 cursor-pointer ${
+                  isAvailable ? "hover:bg-light hover:text-white text-light" : "text-gray-400 cursor-not-allowed"
+                }`}
+                onClick={() => isAvailable && handleSizeChanged(size)}
+                role="option"
+                aria-selected={selected === size}
+              >
+                {size} {!isAvailable && "(Out of Stock)"}
+              </li>
+            );
+          })}
         </ul>
       )}
     </div>

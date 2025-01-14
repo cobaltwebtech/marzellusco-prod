@@ -3,7 +3,7 @@ enable: true
 title: "Be You. Stay True. Never Change. Only Grow."
 sub_title: "Look Your Best with Marzellus"
 image: "/images/call-to-action.jpg"
-description: "We can't wait to see you with your Marzellus gear!"
+description: "Give back luxury its meaning."
 button:
   enable: true
   label: "Shop Now"

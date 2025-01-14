@@ -17,7 +17,8 @@ package-lock.json
 
 # environment variables
 .env
-.env.production
+.env.prod
+.env.dev
 
 # macOS-specific files
 .DS_Store

@@ -1,16 +1,19 @@
 ---
 import FeaturedProducts from "@/components/FeaturedProducts.astro";
+import config from "@/config/config.json";
 import { AddToCart } from "@/functional-components/cart/AddToCart";
 import ProductGallery from "@/functional-components/product/ProductGallery";
 import ShowTags from "@/functional-components/product/ShowTags";
 import Tabs from "@/functional-components/product/Tabs";
 import { VariantSelector } from "@/functional-components/product/VariantSelector";
-import PaymentTypes from "@/functional-components/PaymentTypes";
-import SocialShare from "@/functional-components/SocialShare";
 import Price from "@/functional-components/Price";
-import Base from "@/layouts/Base.astro";
+import SocialShare from "@/functional-components/SocialShare";
+import PaymentTypes from "@/functional-components/PaymentTypes";
 import Breadcrumbs from "@/components/Breadcrumbs.astro";
+import Base from "@/layouts/Base.astro";
 import { getProduct, getProductRecommendations } from "@/lib/shopify";
+import type { CollectionEntry } from "astro:content";
+import { getEntry } from "astro:content";
 
 const { slug } = Astro.params;
 const product = await getProduct(slug as string);

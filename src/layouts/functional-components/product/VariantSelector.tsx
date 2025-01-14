@@ -27,19 +27,23 @@ export function VariantSelector({ options, variants, images }: {
   variants: ProductVariant[];
   images: ImageItem[];
 }) {
-  const [selectedOptions, setSelectedOptions] = useState<Record<string, string | undefined>>({
-    color: undefined,
-    size: undefined,
-  });
+  const [selectedOptions, setSelectedOptions] = useState<Record<string, string | undefined>>({});
 
   const imageMap = generateImageMap(images);
 
   useEffect(() => {
     const searchParams = new URLSearchParams(window.location.search);
-    const color = searchParams.get("color");
-    const size = searchParams.get("size");
-    setSelectedOptions({ color, size } as Record<string, string | undefined>);
-  }, []);
+    const newSelectedOptions: Record<string, string | undefined> = {};
+    
+    options.forEach(option => {
+      const value = searchParams.get(option.name.toLowerCase());
+      if (value) {
+        newSelectedOptions[option.name.toLowerCase()] = value;
+      }
+    });
+
+    setSelectedOptions(newSelectedOptions);
+  }, [options]);
 
   const updateUrl = (param: string, value: string) => {
     const params = new URLSearchParams(window.location.search);
@@ -53,6 +57,29 @@ export function VariantSelector({ options, variants, images }: {
       [optionName]: value,
     }));
     updateUrl(optionName, value);
+
+    const updatedOptions = { ...selectedOptions, [optionName]: value };
+    const allOptionsSelected = options.every(option => 
+      updatedOptions[option.name.toLowerCase()] !== undefined
+    );
+
+    if (allOptionsSelected) {
+      const selectedVariant = variants.find(variant =>
+        variant.selectedOptions.every(option =>
+          updatedOptions[option.name.toLowerCase()] === option.value
+        )
+      );
+
+      if (selectedVariant) {
+        const event = new CustomEvent('variantChanged', { 
+          detail: { 
+            variantId: selectedVariant.id,
+            availableForSale: selectedVariant.availableForSale
+          } 
+        });
+        window.dispatchEvent(event);
+      }
+    }
   };
 
   const combinations = variants.map((variant) => ({
@@ -67,89 +94,86 @@ export function VariantSelector({ options, variants, images }: {
     ),
   }));
 
-  // Filter out options where name is "Title" and values are ["Default Title"]
   const filteredOptions = options.filter(
     (option) => !(option.name === "Title" && option.values.includes("Default Title"))
   );
 
-  const sizeOption = options.find((option) => option.name === "Size");
+  const sizeOption = options.find((option) => option.name.toLowerCase() === "size");
 
   return (
     <div>
-      {filteredOptions.map((option) => (
-        <div key={option.id}>
-          <h5 className="mb-2 max-md:text-base">
-            {option.name === "Size" ? "" : option.name}
-          </h5>
-          <div className="flex flex-wrap gap-3">
-            {option.values.map((value) => {
-              const optionNameLowerCase = option.name.toLowerCase();
-              const isAvailableForSale = combinations.find(
-                (combination: Combination) =>
-                  combination[optionNameLowerCase] === value &&
-                  combination.availableForSale
-              );
+      {filteredOptions
+        .filter(option => option.name.toLowerCase() !== 'size')
+        .map((option) => (
+          <div key={option.id}>
+            <h5 className="mb-2 max-md:text-base">
+              {option.name}
+            </h5>
+            <div className="flex flex-wrap gap-3">
+              {option.values.map((value) => {
+                const optionNameLowerCase = option.name.toLowerCase();
+                const isAvailableForSale = combinations.some(
+                  (combination: Combination) =>
+                    combination[optionNameLowerCase] === value &&
+                    combination.availableForSale
+                );
 
-              const isActive = selectedOptions[optionNameLowerCase] === value;
+                const isActive = selectedOptions[optionNameLowerCase] === value;
 
-              if (option.name === "Size") {
-                return null; // Skip rendering size in the loop
-              }
+                if (option.name.toLowerCase() === "size") {
+                  return null;
+                }
 
-              return (
-                <div key={value}>
-                  <button
-                    aria-disabled={!isAvailableForSale}
-                    disabled={!isAvailableForSale}
-                    onClick={() => handleOptionChange(optionNameLowerCase, value)}
-                    title={`${option.name} ${value}${!isAvailableForSale ? " (Out of Stock)" : ""}`}
-                    className={`flex min-w-[48px] items-center justify-center rounded-md border text-sm ${isActive && option.name !== "Color"
-                      ? "cursor-default ring-2 ring-dark dark:ring-darkmode-dark"
-                      : ""
-                      } ${!isActive && isAvailableForSale && option.name !== "Color"
-                        ? "ring-1 ring-transparent transition duration-300 ease-in-out hover:scale-110 hover:ring-dark hover:dark:ring-darkmode-dark"
-                        : ""
-                      } ${!isAvailableForSale
-                        ? "relative z-10 cursor-not-allowed overflow-hidden bg-neutral-100 text-neutral-500 dark:bg-neutral-900 dark:text-neutral-400"
-                        : ""
-                      }`}
-                  >
-                    {option.name === "Color" ? (
-                      <div
-                        className={`relative rounded-md overflow-hidden ${isActive ? "outline outline-1 outline-dark dark:outline-darkmode-dark" : ""
-                          }`}
-                      >
-                        <img
-                          src={imageMap[value]}
-                          alt={value}
-                          width={50}
-                          height={50}
-                          className={`${isActive ? "opacity-80" : ""}`}
-                        />
-                        {isActive && (
-                          <span className="text-inherit h-full opacity-100 absolute top-2 right-2">
-                            <BsCheckLg size={35} />
-                          </span>
-                        )}
-                      </div>
-                    ) : (
-                      value
-                    )}
-                  </button>
-                </div>
-              );
-            })}
+                return (
+                  <div key={value}>
+                    <button
+                      aria-label={`${option.name} ${value}${!isAvailableForSale ? " (Out of Stock)" : ""}`}
+                      aria-disabled={!isAvailableForSale}
+                      disabled={!isAvailableForSale}
+                      onClick={() => handleOptionChange(optionNameLowerCase, value)}
+                      className={`flex min-w-[48px] items-center justify-center rounded-md border text-sm 
+                        ${isActive ? "cursor-default ring-2 ring-dark dark:ring-darkmode-dark" : ""}
+                        ${!isActive && isAvailableForSale ? "ring-1 ring-transparent transition duration-300 ease-in-out hover:scale-110 hover:ring-dark hover:dark:ring-darkmode-dark" : ""}
+                        ${!isAvailableForSale ? "relative z-10 cursor-not-allowed overflow-hidden bg-neutral-100 text-neutral-500 dark:bg-neutral-900 dark:text-neutral-400" : ""}`}
+                    >
+                      {option.name.toLowerCase() === "color" ? (
+                        <div
+                          className={`relative rounded-md overflow-hidden ${isActive ? "bg-black outline outline-1 outline-dark dark:outline-darkmode-dark" : ""}`}
+                        >
+                          <img
+                            src={imageMap[value]}
+                            alt={value}
+                            width={50}
+                            height={50}
+                            className={`${isActive ? "opacity-60" : ""}`}
+                          />
+                          {isActive && (
+                            <span className="text-inherit h-full opacity-100 absolute top-2 right-2">
+                              <BsCheckLg size={35} className="text-green-400"/>
+                            </span>
+                          )}
+                        </div>
+                      ) : (
+                        value
+                      )}
+                    </button>
+                  </div>
+                );
+              })}
+            </div>
           </div>
-        </div>
-      ))}
+        ))
+      }
 
       {sizeOption && (
         <div className="mb-8 mt-8">
           <h5 className="mb-2 max-md:text-base">{sizeOption.name}</h5>
           <VariantDropDown
             sizeOption={sizeOption}
-            selectedSize={selectedOptions.size}
-            onSizeChange={(value: string) => handleOptionChange("size", value)}
+            selectedSize={selectedOptions[sizeOption.name.toLowerCase()]}
+            onSizeChange={(value: string) => handleOptionChange(sizeOption.name.toLowerCase(), value)}
+            combinations={combinations}
+            selectedOptions={selectedOptions}
           />
         </div>
       )}
