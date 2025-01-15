@@ -9,6 +9,8 @@ import "@/styles/main.scss";
 import { AstroFont } from "astro-font";
 import { ViewTransitions } from "astro:transitions";
 
+const umamiId = import.meta.env.UMAMI_WEBSITE_ID;
+
 // font families
 const pf = theme.fonts.font_family.primary;
 const sf = theme.fonts.font_family.secondary;
@@ -42,12 +44,12 @@ const { title, meta_title, description, image, noindex, canonical, isHomePage } 
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="en" class="scrollbar-hide lenis lenis-smooth">
   <head>
     <!-- favicon -->
     <link rel="shortcut icon" href={config.site.favicon} />
     <!-- theme meta -->
-    <meta name="theme-name" content="astrofront" />
+    <meta name="theme-name" content="Marzellus" />
     <meta name="msapplication-TileColor" content="#000000" />
     <meta
       name="theme-color"
@@ -62,7 +64,7 @@ const { title, meta_title, description, image, noindex, canonical, isHomePage } 
     <meta name="generator" content={Astro.generator} />
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
-    <!-- google font css -->
+    <!-- Bunny fonts -->
     <AstroFont
       config={[
         {
@@ -72,16 +74,7 @@ const { title, meta_title, description, image, noindex, canonical, isHomePage } 
           name: fontPrimary!,
           fallback: "sans-serif",
           cssVariable: "font-primary",
-          googleFontsURL: `https://fonts.googleapis.com/css2?family=${pf}&display=swap`,
-        },
-        {
-          src: [],
-          preload: true,
-          display: "swap",
-          name: fontSecondary!,
-          fallback: "sans-serif",
-          cssVariable: "font-secondary",
-          googleFontsURL: `https://fonts.googleapis.com/css2?family=${sf}&display=swap`,
+          googleFontsURL: `https://fonts.bunny.net/css?family=${pf}&display=swap`,
         },
       ]}
     />
@@ -97,9 +90,19 @@ const { title, meta_title, description, image, noindex, canonical, isHomePage } 
       {plainify(meta_title ? meta_title : title ? title : config.site.title)}
     </title>
 
+    <!--Import Lenis smooth scroll script -->
+    <script>
+      import "@/layouts/functional-components/LenisSmoothScroll";
+    </script>    
+    <!-- Umami Analytics script tag -->
+    <script defer src="https://umami.cobaltweb.tech/script.js" data-website-id={umamiId}></script>
+
     <!-- preconnect third party resources -->
     {isHomePage && (<link rel="preconnect" href="https://iframe.mediadelivery.net" />)}
     <link rel="preconnect" href="https://cdn.shopify.com" />
+
+    <!-- Sitemap index -->
+    <link rel="sitemap" href="/sitemap-index.xml" />
 
     <!-- canonical url -->
     {canonical && <link rel="canonical" href={canonical} item-prop="url" />}

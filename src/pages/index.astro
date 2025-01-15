@@ -1,16 +1,21 @@
 ---
+export const prerender = false;
+
+import { getEntry } from "astro:content";
 import FeaturedProducts from "@/components/FeaturedProducts.astro";
 import config from "@/config/config.json";
 import CollectionsGrid from "@/functional-components/CollectionsGrid";
 import Base from "@/layouts/Base.astro";
 import { getCollectionProducts, getCollections } from "@/lib/shopify";
 import CallToAction from "@/partials/CallToAction.astro";
-import Slider from "@/functional-components/Slider";
+import SlideShow from "@/functional-components/SlideShow";
 import VideoHero from "@/components/VideoHero.astro";
 
 
 const { collections } = config.shopify;
 const collectionProducts = await getCollections();
+const sliderData = await getEntry("sections", "slideshow");
+const { slides } = sliderData.data;
 
 // Fetch featured products
 const { products: featuredProducts } = await getCollectionProducts({
@@ -37,11 +42,11 @@ const { products: featuredProducts } = await getCollectionProducts({
     </div>
   </section>
 
-  <!-- Slider -->
+  <!-- Slide Show section -->
   <section>
     <div class="container">
       <div class="bg-theme-light dark:bg-darkmode-theme-light py-10 mb-6 md:mb-14 rounded-md">
-        <Slider client:load />
+        <SlideShow client:load slides={slides} />
       </div>
     </div>
   </section>

@@ -7,7 +7,6 @@ import { defineConfig } from "astro/config";
 import remarkCollapse from "remark-collapse";
 import remarkToc from "remark-toc";
 import config from "./src/config/config.json";
-
 import vercel from "@astrojs/vercel/serverless";
 
 // https://astro.build/config
@@ -30,7 +29,9 @@ export default defineConfig({
   integrations: [
     react(),
     sitemap(),
-    tailwind({ applyBaseStyles: false }),
+    tailwind({ 
+      applyBaseStyles: false 
+    }),
     AutoImport({
       imports: [
         "@/shortcodes/Button",
@@ -60,5 +61,10 @@ export default defineConfig({
     },
     extendDefaultPlugins: true,
   },
-  adapter: vercel(),
+  adapter: vercel({
+    imageService: true,
+    webAnalytics: {
+      enabled: true,
+    }
+  }),
 });

@@ -21,15 +21,14 @@ const SearchBar = () => {
 
   const updateURL = (query: string) => {
     const newURL = query ? `/products?q=${encodeURIComponent(query)}` : '/products';
-    // window.history.pushState({}, '', newURL);
-    window.location.href = newURL.toString();
+    window.history.pushState({}, '', newURL);
+    // Trigger a custom event to notify that the URL has changed
+    window.dispatchEvent(new Event('popstate'));
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputEditing(true);
     setInputValue(e.target.value);
-
-    updateURL(e.target.value);
   };
 
   const handleClear = () => {
@@ -40,9 +39,7 @@ const SearchBar = () => {
 
   const onSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const form = e.target as HTMLFormElement;
-    const searchInput = form.search as HTMLInputElement;
-    updateURL(searchInput.value);
+    updateURL(inputValue);
   };
 
   return (
