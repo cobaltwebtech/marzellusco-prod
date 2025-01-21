@@ -59,5 +59,3 @@ Check us out [https://www.cobaltweb.tech/](https://www.cobaltweb.tech/?utm_sourc
 ## 📝 License
 
 Copyright (c) 2025 -  Based, built, and coded in Austin, Texas USA. [https://www.cobaltweb.tech/](https://www.cobaltweb.tech/?utm_source=github&utm_medium=web&utm_campaign=github-repo)
-
-**Code License:** Released under the [MIT](https://github.com/themefisher/astrofront/blob/main/LICENSE) license.
