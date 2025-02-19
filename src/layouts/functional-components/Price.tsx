@@ -25,11 +25,7 @@ const Price: React.FC<PriceProps> = ({
     currencyCodeClassName ? "ml-1 inline" : ""
   }`.trim();
 
-  return (
-    <p className={className}>
-      {formattedAmount}
-    </p>
-  );
+  return <p className={className}>{formattedAmount}</p>;
 };
 
 export default Price;

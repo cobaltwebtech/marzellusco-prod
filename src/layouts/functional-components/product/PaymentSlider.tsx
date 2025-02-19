@@ -47,7 +47,7 @@ const PaymentSlider = ({ paymentMethods }: { paymentMethods: any }) => {
       ))}
 
       <button ref={prevRef} className="hidden" />
-      <button ref={nextRef} className="p-2 border rounded-md cursor-pointer">
+      <button ref={nextRef} className="cursor-pointer rounded-md border p-2">
         <BsChevronRight />
       </button>
     </Swiper>

@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import DynamicIcon from "@/helpers/DynamicIcon";
 
-const SocialShare: React.FC<{ socialName: string; className: string; pathname: string }> = ({
-  socialName,
-  className,
-  pathname,
-}) => {
+const SocialShare: React.FC<{
+  socialName: string;
+  className: string;
+  pathname: string;
+}> = ({ socialName, className, pathname }) => {
   const [baseUrl, setBaseUrl] = useState("");
   const [isTooltipVisible, setIsTooltipVisible] = useState(false);
 
@@ -68,13 +68,13 @@ const SocialShare: React.FC<{ socialName: string; className: string; pathname: s
 
       <li>
         <a
-          className="cursor-pointer relative"
+          className="relative cursor-pointer"
           onClick={handleCopyLink}
           aria-label="Copy Link"
         >
           <span className="sr-only">Copy Link</span>
           {isTooltipVisible && (
-            <span className="text-xs absolute -right-16 text-text dark:text-darkmode-text whitespace-nowrap">
+            <span className="text-text dark:text-darkmode-text absolute -right-16 text-xs whitespace-nowrap">
               <DynamicIcon
                 className="inline-block text-green-500"
                 icon={"FaLink"}

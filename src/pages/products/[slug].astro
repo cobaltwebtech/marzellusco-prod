@@ -40,30 +40,28 @@ const defaultVariantId = variants.length > 0 ? variants[0].id : undefined;
 ---
 
 <Base>
-  <Breadcrumbs className="container my-8"/>
+  <Breadcrumbs className="container my-8" />
 
   {/* Product details section  */}
   <section class="md:section-sm">
     <div class="container">
-      <div class="row justify-center">
+      <div class="grid grid-cols-1 justify-center gap-8 md:grid-cols-2">
         {/* right side contents */}
         <div class="col-10 md:col-8 lg:col-6">
           <ProductGallery client:only="react" images={images} />
         </div>
 
         {/* left side contents */}
-        <div class="col-10 md:col-8 lg:col-5 md:ml-7 py-6 lg:py-0">
-          <h1 class="text-3xl md:h2 mb-2 md:mb-6">{title}</h1>
+        <div class="col-10 md:col-8 lg:col-5 py-6 md:ml-7 lg:py-0">
+          <h1 class="mb-2 text-3xl font-bold md:mb-6">{title}</h1>
 
-          <div class="flex gap-2 items-center">
-            <h4 class="text-light dark:text-darkmode-light max-md:h2">
-              <Price
-                amount={priceRange?.minVariantPrice.amount}
-              />
+          <div class="flex items-center gap-2">
+            <h4 class="text-light dark:text-darkmode-text text-2xl font-medium">
+              <Price amount={priceRange?.minVariantPrice.amount} />
             </h4>
             {
               parseFloat(compareAtPriceRange?.maxVariantPrice.amount) > 0 ? (
-                <s class="text-light max-md:h3 dark:text-darkmode-light">
+                <s class="max-md:h3 text-light dark:text-darkmode-light">
                   <Price
                     amount={compareAtPriceRange?.maxVariantPrice?.amount}
                   />
@@ -74,7 +72,7 @@ const defaultVariantId = variants.length > 0 ? variants[0].id : undefined;
             }
           </div>
 
-          <div class="my-10 md:my-10 space-y-6 md:space-y-10">
+          <div class="my-10 space-y-6 md:my-10 md:space-y-10">
             <div>
               {
                 options && (
@@ -89,7 +87,7 @@ const defaultVariantId = variants.length > 0 ? variants[0].id : undefined;
             </div>
           </div>
 
-          <div class="flex gap-4 mt-8 md:mt-10 mb-6">
+          <div class="mt-8 mb-6 flex gap-4 md:mt-10">
             <AddToCart
               client:only="react"
               variants={product?.variants}
@@ -104,9 +102,9 @@ const defaultVariantId = variants.length > 0 ? variants[0].id : undefined;
             <PaymentTypes client:only="react" />
           </div>
 
-          <hr class="my-6 border border-border dark:border-light" />
+          <hr class="border-border dark:border-light my-6 border" />
 
-          <div class="flex gap-3 items-center mb-6">
+          <div class="mb-6 flex items-center gap-3">
             <h5 class="max-md:text-md">Share to socials:</h5>
             <SocialShare
               socialName={title}
@@ -118,7 +116,7 @@ const defaultVariantId = variants.length > 0 ? variants[0].id : undefined;
 
           {
             tags.length > 0 && (
-              <div class="flex flex-wrap gap-3 items-center">
+              <div class="flex flex-wrap items-center gap-3">
                 <h5 class="max-md:text-base">Tags:</h5>
                 <ShowTags client:only="react" tags={tags} />
               </div>
@@ -150,8 +148,8 @@ const defaultVariantId = variants.length > 0 ? variants[0].id : undefined;
       {
         relatedProducts?.length > 0 && (
           <>
-            <div class="text-center mb-6 md:mb-14">
-              <h2 class="mb-2">Related Products</h2>
+            <div class="mb-6 text-center md:mb-14">
+              <h2 class="mb-2 text-4xl font-bold">Related Products</h2>
             </div>
             <FeaturedProducts products={relatedProducts.slice(0, 4)} />
           </>

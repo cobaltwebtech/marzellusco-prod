@@ -28,8 +28,11 @@ const Testimonials = ({
     <section className="section">
       <div className="container">
         <div className="row">
-          <div className="mx-auto mb-12 text-center md:col-10 lg:col-8 xl:col-6">
-            <h2 dangerouslySetInnerHTML={{ __html: markdownify(title) }} className="mb-4" />
+          <div className="md:col-10 lg:col-8 xl:col-6 mx-auto mb-12 text-center">
+            <h2
+              dangerouslySetInnerHTML={{ __html: markdownify(title) }}
+              className="mb-4"
+            />
             {/* <p
               dangerouslySetInnerHTML={markdownify(
                 data.frontmatter.description!,
@@ -53,8 +56,8 @@ const Testimonials = ({
             >
               {testimonials.map((item: Testimonial, index: number) => (
                 <SwiperSlide key={index}>
-                  <div className="rounded-lg relative flex flex-col items-center bg-theme-light px-7 py-10 dark:bg-darkmode-theme-light">
-                    <div className="text-dark dark:text-white absolute opacity-25">
+                  <div className="bg-theme-light dark:bg-darkmode-theme-light relative flex flex-col items-center rounded-lg px-7 py-10">
+                    <div className="text-dark absolute opacity-25 dark:text-white">
                       <svg
                         width="160"
                         height="160"
@@ -73,11 +76,13 @@ const Testimonials = ({
                       </svg>
                     </div>
                     <blockquote
-                      className="mt-14 text-center mx-auto md:col-10 lg:col-8 z-10"
-                      dangerouslySetInnerHTML={{ __html: markdownify(item.content) }}
+                      className="md:col-10 lg:col-8 z-10 mx-auto mt-14 text-center"
+                      dangerouslySetInnerHTML={{
+                        __html: markdownify(item.content),
+                      }}
                     />
                     <div className="mt-11 flex flex-col items-center">
-                      <div className="text-dark dark:text-white mb-4">
+                      <div className="text-dark mb-4 dark:text-white">
                         <img
                           height={50}
                           width={50}
@@ -88,11 +93,15 @@ const Testimonials = ({
                       </div>
 
                       <h3
-                        dangerouslySetInnerHTML={{ __html: markdownify(item.name) }}
+                        dangerouslySetInnerHTML={{
+                          __html: markdownify(item.name),
+                        }}
                         className="h5 font-primary font-semibold"
                       />
                       <p
-                        dangerouslySetInnerHTML={{ __html: markdownify(item.designation) }}
+                        dangerouslySetInnerHTML={{
+                          __html: markdownify(item.designation),
+                        }}
                         className="text-dark dark:text-white"
                       />
                     </div>
@@ -101,20 +110,21 @@ const Testimonials = ({
               ))}
 
               <div
-                className={`hidden lg:flex justify-between w-full absolute top-1/2 z-10 px-6 text-dark ${isHovered
-                  ? "opacity-100 transition-opacity duration-300 ease-in-out"
-                  : "opacity-0 transition-opacity duration-300 ease-in-out"
-                  }`}
+                className={`text-dark absolute top-1/2 z-10 hidden w-full justify-between px-6 lg:flex ${
+                  isHovered
+                    ? "opacity-100 transition-opacity duration-300 ease-in-out"
+                    : "opacity-0 transition-opacity duration-300 ease-in-out"
+                }`}
               >
                 <div
                   ref={prevRef}
-                  className="p-2 lg:p-4 rounded-md bg-body cursor-pointer shadow-sm"
+                  className="bg-body cursor-pointer rounded-md p-2 shadow-sm lg:p-4"
                 >
                   <HiOutlineArrowNarrowLeft size={24} />
                 </div>
                 <div
                   ref={nextRef}
-                  className="p-2 lg:p-4 rounded-md bg-body cursor-pointer shadow-sm"
+                  className="bg-body cursor-pointer rounded-md p-2 shadow-sm lg:p-4"
                 >
                   <HiOutlineArrowNarrowRight size={24} />
                 </div>

@@ -15,12 +15,12 @@ interface VariantDropDownProps {
   selectedOptions: Record<string, string | undefined>;
 }
 
-const VariantDropDown: React.FC<VariantDropDownProps> = ({ 
-  sizeOption, 
-  selectedSize, 
-  onSizeChange, 
-  combinations, 
-  selectedOptions 
+const VariantDropDown: React.FC<VariantDropDownProps> = ({
+  sizeOption,
+  selectedSize,
+  onSizeChange,
+  combinations,
+  selectedOptions,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selected, setSelected] = useState(selectedSize || "Select Size");
@@ -42,7 +42,10 @@ const VariantDropDown: React.FC<VariantDropDownProps> = ({
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(event.target as Node)
+      ) {
         setIsOpen(false);
       }
     };
@@ -58,17 +61,17 @@ const VariantDropDown: React.FC<VariantDropDownProps> = ({
   }, [selectedSize]);
 
   return (
-    <div className="w-72 relative" ref={dropdownRef}>
+    <div className="relative w-72" ref={dropdownRef}>
       <button
-        className="w-full py-2 pl-3 pr-10 text-left bg-theme-light rounded-md cursor-pointer sm:text-sm focus:outline-none"
+        className="bg-theme-light w-full cursor-pointer rounded-md py-2 pr-10 pl-3 text-left focus:outline-none sm:text-sm"
         onClick={() => setIsOpen(!isOpen)}
         aria-haspopup="listbox"
         aria-expanded={isOpen}
       >
-        <span className="block truncate text-light">{selected}</span>
+        <span className="text-light block truncate">{selected}</span>
         <span className="absolute inset-y-0 right-0 flex items-center pr-2">
           <svg
-            className={`h-5 w-5 text-light transform transition-transform ${isOpen ? "rotate-180" : ""}`}
+            className={`text-light h-5 w-5 transform transition-transform ${isOpen ? "rotate-180" : ""}`}
             fill="currentColor"
             viewBox="0 0 20 20"
             aria-hidden="true"
@@ -83,11 +86,18 @@ const VariantDropDown: React.FC<VariantDropDownProps> = ({
       </button>
 
       {isOpen && (
-        <ul className="absolute z-20 mt-1 max-h-60 w-full bg-white shadow-lg rounded-md overflow-auto ring-1 ring-black/5 focus:outline-none" role="listbox">
+        <ul
+          className="absolute z-20 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white ring-1 shadow-lg ring-black/5 focus:outline-none"
+          role="listbox"
+        >
           {sizeOption.values.map((size: string) => {
             const isAvailable = combinations.some((combination) => {
-              const matchesSelectedOptions = Object.entries(selectedOptions).every(
-                ([key, value]) => key === sizeOption.name.toLowerCase() || combination[key] === value
+              const matchesSelectedOptions = Object.entries(
+                selectedOptions,
+              ).every(
+                ([key, value]) =>
+                  key === sizeOption.name.toLowerCase() ||
+                  combination[key] === value,
               );
               return (
                 matchesSelectedOptions &&
@@ -98,8 +108,10 @@ const VariantDropDown: React.FC<VariantDropDownProps> = ({
             return (
               <li
                 key={size}
-                className={`py-2 px-4 cursor-pointer ${
-                  isAvailable ? "hover:bg-light hover:text-white text-light" : "text-gray-400 cursor-not-allowed"
+                className={`cursor-pointer px-4 py-2 ${
+                  isAvailable
+                    ? "text-light hover:bg-light hover:text-white"
+                    : "cursor-not-allowed text-gray-400"
                 }`}
                 onClick={() => isAvailable && handleSizeChanged(size)}
                 role="option"

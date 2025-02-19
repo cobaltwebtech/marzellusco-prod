@@ -61,19 +61,19 @@ const CollectionsSlider = ({ collections }: { collections: any }) => {
         onInit={() => setInit(true)}
       >
         {collectionsData?.map((item: any) => {
-          const { title, handle, image, } = item;
+          const { title, handle, image } = item;
           return (
             <SwiperSlide key={handle}>
-              <div className="text-center relative">
+              <div className="relative text-center">
                 <img
                   src={image?.url}
                   width={424}
                   height={306}
                   alt={title}
-                  className="h-[150px] md:h-[250px] lg:h-[306px] object-cover rounded-md"
+                  className="h-[150px] rounded-md object-cover md:h-[250px] lg:h-[306px]"
                 />
                 <div className="py-6">
-                  <h3 className="mb-2 font-medium h4">
+                  <h3 className="h4 mb-2 font-medium">
                     <a
                       className="after:absolute after:inset-0"
                       href={`/products?c=${handle}`}
@@ -91,20 +91,21 @@ const CollectionsSlider = ({ collections }: { collections: any }) => {
         })}
 
         <div
-          className={`hidden md:block w-full absolute top-[33%] z-10 px-4 text-dark ${isHovered
-            ? "opacity-100 transition-opacity duration-300 ease-in-out"
-            : "opacity-0 transition-opacity duration-300 ease-in-out"
-            }`}
+          className={`text-dark absolute top-[33%] z-10 hidden w-full px-4 md:block ${
+            isHovered
+              ? "opacity-100 transition-opacity duration-300 ease-in-out"
+              : "opacity-0 transition-opacity duration-300 ease-in-out"
+          }`}
         >
           <div
             ref={prevRef}
-            className="p-2 lg:p-3 rounded-md bg-body cursor-pointer shadow-sm absolute left-4"
+            className="bg-body absolute left-4 cursor-pointer rounded-md p-2 shadow-sm lg:p-3"
           >
             <HiOutlineArrowNarrowLeft size={24} />
           </div>
           <div
             ref={nextRef}
-            className="p-2 lg:p-3 rounded-md bg-body cursor-pointer shadow-sm absolute right-4"
+            className="bg-body absolute right-4 cursor-pointer rounded-md p-2 shadow-sm lg:p-3"
           >
             <HiOutlineArrowNarrowRight size={24} />
           </div>

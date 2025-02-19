@@ -117,41 +117,41 @@ const SignUpForm = () => {
 
               {errorMessages.length > 0 &&
                 errorMessages.map((error, index) => (
-                  <p key={index} className="font-medium text-red-500 mt-2">
+                  <p key={index} className="mt-2 font-medium text-red-500">
                     *{error}
                   </p>
                 ))}
 
               <button
                 type="submit"
-                className="btn btn-primary md:text-lg md:font-medium w-full mt-10"
+                className="btn btn-primary mt-10 w-full md:text-lg md:font-medium"
               >
                 {loading ? (
-                  <BiLoaderAlt className="animate-spin mx-auto" size={26} />
+                  <BiLoaderAlt className="mx-auto animate-spin" size={26} />
                 ) : (
                   "Sign Up"
                 )}
               </button>
             </form>
 
-            <div className="flex gap-x-2 text-sm md:text-base mt-6">
+            <div className="mt-6 flex gap-x-2 text-sm md:text-base">
               <p className="text-light dark:text-darkmode-light">
                 I have read and agree to the
               </p>
               <a
-                className="underline font-medium text-dark dark:text-darkmode-dark"
+                className="text-dark dark:text-darkmode-dark font-medium underline"
                 href="/terms-services"
               >
                 Terms & Conditions
               </a>
             </div>
 
-            <div className="flex gap-x-2 text-sm md:text-base mt-2">
+            <div className="mt-2 flex gap-x-2 text-sm md:text-base">
               <p className="text-light dark:text-darkmode-light">
                 Have an account?
               </p>
               <a
-                className="underline font-medium text-dark dark:text-darkmode-dark"
+                className="text-dark dark:text-darkmode-dark font-medium underline"
                 href="/login"
               >
                 Login

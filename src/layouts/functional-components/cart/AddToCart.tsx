@@ -75,7 +75,7 @@ function SubmitButton({
     >
       {pending ? (
         <BiLoaderAlt
-          className={`animate-spin w-[70px] md:w-[85px]`}
+          className={`w-[70px] animate-spin md:w-[85px]`}
           size={26}
         />
       ) : (
@@ -100,7 +100,9 @@ export function AddToCart({
 }: AddToCartProps) {
   const [message, setMessage] = useState<string | null>(null);
   const [pending, setPending] = useState(false);
-  const [selectedVariantId, setSelectedVariantId] = useState<string | undefined>(defaultVariantId);
+  const [selectedVariantId, setSelectedVariantId] = useState<
+    string | undefined
+  >(defaultVariantId);
   const [allOptionsSelected, setAllOptionsSelected] = useState(false);
   const [availableForSale, setAvailableForSale] = useState<boolean>(true); // Added state for availableForSale
   const lastUrl = useRef(window.location.href);
@@ -119,7 +121,9 @@ export function AddToCart({
     );
 
     setSelectedVariantId(variant?.id || defaultVariantId);
-    setAllOptionsSelected(selectedOptions.length === variants[0].selectedOptions.length);
+    setAllOptionsSelected(
+      selectedOptions.length === variants[0].selectedOptions.length,
+    );
   };
 
   useEffect(() => {
@@ -174,10 +178,16 @@ export function AddToCart({
       setAvailableForSale(availableForSale); // Update availableForSale state
     };
 
-    window.addEventListener('variantChanged', handleVariantChanged as EventListener);
+    window.addEventListener(
+      "variantChanged",
+      handleVariantChanged as EventListener,
+    );
 
     return () => {
-      window.removeEventListener('variantChanged', handleVariantChanged as EventListener);
+      window.removeEventListener(
+        "variantChanged",
+        handleVariantChanged as EventListener,
+      );
     };
   }, []);
 

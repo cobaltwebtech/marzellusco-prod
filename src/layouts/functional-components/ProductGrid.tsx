@@ -11,7 +11,7 @@ const ProductGrid = ({
   initialPageInfo,
   sortKey,
   reverse,
-  searchValue
+  searchValue,
 }: {
   initialProducts: Product[];
   initialPageInfo: PageInfo;
@@ -29,7 +29,8 @@ const ProductGrid = ({
   const loaderRef = useRef(null);
 
   const getSortParams = (sortKey: string) => {
-    const sortOption = sorting.find((item) => item.slug === sortKey) || defaultSort;
+    const sortOption =
+      sorting.find((item) => item.slug === sortKey) || defaultSort;
     return { sortKey: sortOption.sortKey, reverse: sortOption.reverse };
   };
 
@@ -39,10 +40,11 @@ const ProductGrid = ({
     setLoading(true);
     try {
       const response = await fetch(
-        `/api/products.json?cursor=${pageInfo.endCursor || ""}&sortKey=${currentSortKey}&reverse=${currentReverse}`
+        `/api/products.json?cursor=${pageInfo.endCursor || ""}&sortKey=${currentSortKey}&reverse=${currentReverse}`,
       );
       if (!response.ok) throw new Error("Failed to fetch");
-      const { products: newProducts, pageInfo: newPageInfo } = await response.json();
+      const { products: newProducts, pageInfo: newPageInfo } =
+        await response.json();
 
       setProducts((prevProducts) => [...prevProducts, ...newProducts]);
       setPageInfo(newPageInfo);
@@ -58,7 +60,8 @@ const ProductGrid = ({
     const params = new URLSearchParams(window.location.search);
     const newSortKey = params.get("sortKey") || sortKey;
 
-    const { sortKey: mappedSortKey, reverse: mappedReverse } = getSortParams(newSortKey);
+    const { sortKey: mappedSortKey, reverse: mappedReverse } =
+      getSortParams(newSortKey);
 
     // Update only if URL params differ from current state
     if (mappedSortKey !== currentSortKey || mappedReverse !== currentReverse) {
@@ -91,7 +94,7 @@ const ProductGrid = ({
             loadMoreProducts();
           }
         },
-        { threshold: 1.0 }
+        { threshold: 1.0 },
       );
 
       if (loaderRef.current) {
@@ -110,17 +113,15 @@ const ProductGrid = ({
 
   return (
     <div>
-      <div className="row mx-auto">
-
+      <div className="mx-auto grid grid-cols-2 gap-4 md:grid-cols-3">
         {searchValue ? (
-          <p className="mb-4">
+          <p className="col-span-full mb-4 text-center">
             {products.length === 0
               ? "There are no products that match "
               : `Showing ${products.length} ${resultsText} for `}
             <span className="font-bold">&quot;{searchValue}&quot;</span>
           </p>
         ) : null}
-
 
         {products?.length === 0 && (
           <div className="mx-auto pt-5 text-center">
@@ -144,9 +145,9 @@ const ProductGrid = ({
           return (
             <div
               key={index}
-              className="text-center col-12 sm:col-6 md:col-4 group relative"
+              className="group col-12 sm:col-6 md:col-4 relative text-center"
             >
-              <div className="md:relative overflow-hidden">
+              <div className="overflow-hidden md:relative">
                 <img
                   src={
                     product.featuredImage?.url || "/images/product_image404.jpg"
@@ -154,7 +155,7 @@ const ProductGrid = ({
                   width={312}
                   height={269}
                   alt={product.featuredImage?.altText || "fallback image"}
-                  className="w-full h-[200px] sm:w-[312px] md:h-[269px] object-cover rounded-md border mx-auto"
+                  className="border-border dark:border-darkmode-border mx-auto h-[200px] w-full rounded-md border object-cover sm:w-[312px] md:h-[269px]"
                 />
 
                 <AddToCart
@@ -167,8 +168,8 @@ const ProductGrid = ({
                   }
                 />
               </div>
-              <div className="py-2 md:py-4 text-center z-20">
-                <h2 className="font-medium text-base md:text-xl">
+              <div className="z-20 py-2 text-center md:py-4">
+                <h2 className="text-base font-medium md:text-xl">
                   <a
                     className="after:absolute after:inset-0"
                     href={`/products/${product?.handle}`}
@@ -176,8 +177,8 @@ const ProductGrid = ({
                     {product?.title}
                   </a>
                 </h2>
-                <div className="flex flex-wrap justify-center items-center gap-x-2 mt-2 md:mt-4">
-                  <span className="text-base md:text-xl font-bold text-dark dark:text-darkmode-dark">
+                <div className="mt-2 flex flex-wrap items-center justify-center gap-x-2 md:mt-4">
+                  <span className="text-dark dark:text-darkmode-dark text-base font-bold md:text-xl">
                     <Price
                       amount={product?.priceRange?.minVariantPrice.amount}
                     />
@@ -185,9 +186,11 @@ const ProductGrid = ({
                   {parseFloat(
                     product?.compareAtPriceRange?.maxVariantPrice?.amount,
                   ) > 0 ? (
-                    <s className="text-light dark:text-darkmode-light text-xs md:text-base font-medium">
+                    <s className="text-light dark:text-darkmode-light text-xs font-medium md:text-base">
                       <Price
-                        amount={product?.compareAtPriceRange?.maxVariantPrice?.amount}
+                        amount={
+                          product?.compareAtPriceRange?.maxVariantPrice?.amount
+                        }
                       />
                     </s>
                   ) : (
@@ -196,12 +199,16 @@ const ProductGrid = ({
                 </div>
               </div>
             </div>
-          )
+          );
         })}
       </div>
       {pageInfo?.hasNextPage && (
-        <div ref={loaderRef} className="text-center py-4 flex justify-center">
-          {loading ? <BiLoaderAlt className={`animate-spin`} size={30} /> : "Scroll for more"}
+        <div ref={loaderRef} className="flex justify-center py-4 text-center">
+          {loading ? (
+            <BiLoaderAlt className={`animate-spin`} size={30} />
+          ) : (
+            "Scroll for more"
+          )}
         </div>
       )}
     </div>

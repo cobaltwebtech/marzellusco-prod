@@ -16,13 +16,18 @@ const { contact_form_action }: { contact_form_action: string } = config.params;
 
   <section class="pt-12 xl:pt-24">
     <div class="container">
-      <div class="w-full sm:w-1/2 mx-auto">
-        <div class="p-10 bg-theme-light dark:bg-darkmode-theme-light rounded-md text-center">
-          <p class="mb-6 h3 font-medium text-dark dark:text-darkmode-dark">
+      <div class="mx-auto w-full sm:w-1/2">
+        <div
+          class="bg-theme-light dark:bg-darkmode-theme-light rounded-md p-10 text-center"
+        >
+          <p class="h3 text-dark dark:text-darkmode-dark mb-6 font-medium">
             Email
           </p>
           <p>
-            <a class="text-red-800 dark:text-red-400 hover:underline" href="mailto:support@marzellusco.com">support@marzellusco.com</a>        
+            <a
+              class="text-red-800 hover:underline dark:text-red-400"
+              href="mailto:support@marzellusco.com">support@marzellusco.com</a
+            >
           </p>
         </div>
       </div>
@@ -31,15 +36,15 @@ const { contact_form_action }: { contact_form_action: string } = config.params;
 
   <section class="section">
     <div class="container">
-      <div class="mx-auto lg:col-10">
+      <div class="lg:col-10 mx-auto">
         <h2 class="mb-14 text-center">We would love to hear from you!</h2>
 
         <form
-          class="border border-border dark:border-darkmode-border rounded-md p-10"
+          class="border-border dark:border-darkmode-border rounded-md border p-10"
           action={contact_form_action}
           method="POST"
         >
-          <div class="mb-6 md:grid grid-cols-2 gap-x-8 max-md:space-y-6">
+          <div class="mb-6 grid-cols-2 gap-x-8 max-md:space-y-6 md:grid">
             <div>
               <label for="firstname" class="form-label">
                 First Name <span class="text-red-500">*</span>
@@ -54,7 +59,9 @@ const { contact_form_action }: { contact_form_action: string } = config.params;
             </div>
 
             <div>
-              <label for="lastname" class="form-label"> Last Name <span class="text-red-500">*</span></label>
+              <label for="lastname" class="form-label">
+                Last Name <span class="text-red-500">*</span></label
+              >
               <input
                 id="lastname"
                 name="lastname"
@@ -65,7 +72,7 @@ const { contact_form_action }: { contact_form_action: string } = config.params;
             </div>
           </div>
 
-          <div class="mb-6 md:grid grid-cols-2 gap-x-8 max-md:space-y-6">
+          <div class="mb-6 grid-cols-2 gap-x-8 max-md:space-y-6 md:grid">
             <div>
               <label for="email" class="form-label">
                 Email Address <span class="text-red-500">*</span>
@@ -80,15 +87,8 @@ const { contact_form_action }: { contact_form_action: string } = config.params;
             </div>
 
             <div>
-              <label for="order" class="form-label">
-                Order Number
-              </label>
-              <input
-                id="order"
-                name="order"
-                class="form-input"
-                type="text"
-              />
+              <label for="order" class="form-label"> Order Number </label>
+              <input id="order" name="order" class="form-input" type="text" />
             </div>
           </div>
 

@@ -13,17 +13,21 @@ const SearchBar = () => {
       setInputEditing(true);
     }
 
-    const inputField = document.getElementById("searchInput") as HTMLInputElement;
+    const inputField = document.getElementById(
+      "searchInput",
+    ) as HTMLInputElement;
     if (isInputEditing || query) {
       inputField.focus();
     }
   }, [isInputEditing]);
 
   const updateURL = (query: string) => {
-    const newURL = query ? `/products?q=${encodeURIComponent(query)}` : '/products';
-    window.history.pushState({}, '', newURL);
+    const newURL = query
+      ? `/products?q=${encodeURIComponent(query)}`
+      : "/products";
+    window.history.pushState({}, "", newURL);
     // Trigger a custom event to notify that the URL has changed
-    window.dispatchEvent(new Event('popstate'));
+    window.dispatchEvent(new Event("popstate"));
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -43,7 +47,10 @@ const SearchBar = () => {
   };
 
   return (
-    <form onSubmit={onSubmit} className="border border-border dark:border-darkmode-border rounded-full flex bg-light/10 pl-4 relative">
+    <form
+      onSubmit={onSubmit}
+      className="border-border bg-light/10 dark:border-darkmode-border relative flex rounded-full border pl-4"
+    >
       <input
         type="text"
         name="search"
@@ -52,19 +59,19 @@ const SearchBar = () => {
         value={inputValue}
         onChange={handleChange}
         id="searchInput"
-        className="bg-transparent border-none search-input focus:ring-transparent p-2 w-full"
+        className="search-input w-full border-none bg-transparent p-2 focus:ring-transparent"
       />
-      <div className="absolute right-0 top-0 flex h-full items-center">
+      <div className="absolute top-0 right-0 flex h-full items-center">
         {inputValue && (
           <button
             type="button"
             onClick={handleClear}
-            className="p-2 m-1 rounded-full"
+            className="m-1 rounded-full p-2"
           >
             <IoClose className="h-4 w-4" />
           </button>
         )}
-        <button type="submit" className="search-icon p-2 m-1 rounded-full">
+        <button type="submit" className="search-icon m-1 rounded-full p-2">
           <IoSearch className="h-5 w-5" />
         </button>
       </div>

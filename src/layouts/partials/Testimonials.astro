@@ -14,17 +14,17 @@ const { title, testimonials } = Astro.props;
 <section class="section">
   <div class="container">
     <div class="row">
-      <div class="mx-auto mb-12 text-center md:col-10 lg:col-8 xl:col-6">
+      <div class="md:col-10 lg:col-8 xl:col-6 mx-auto mb-12 text-center">
         <h2 set:html={markdownify(title)} class="mb-4" />
       </div>
-      <div class="relative testimonials-wrapper">
+      <div class="testimonials-wrapper relative">
         <div class="swiper">
           <div class="swiper-wrapper">
             {
               testimonials.map((item: Testimonial) => (
                 <div class="swiper-slide">
-                  <div class="rounded-lg relative flex flex-col items-center bg-theme-light px-7 py-10 dark:bg-darkmode-theme-light">
-                    <div class="text-dark dark:text-white absolute opacity-25">
+                  <div class="bg-theme-light dark:bg-darkmode-theme-light relative flex flex-col items-center rounded-lg px-7 py-10">
+                    <div class="text-dark absolute opacity-25 dark:text-white">
                       <svg
                         width="160"
                         height="160"
@@ -43,11 +43,11 @@ const { title, testimonials } = Astro.props;
                       </svg>
                     </div>
                     <blockquote
-                      class="mt-14 text-center mx-auto md:col-10 lg:col-8 z-10"
+                      class="md:col-10 lg:col-8 z-10 mx-auto mt-14 text-center"
                       set:html={markdownify(item.content)}
                     />
                     <div class="mt-11 flex flex-col items-center">
-                      <div class="text-dark dark:text-white mb-4">
+                      <div class="text-dark mb-4 dark:text-white">
                         <Image
                           height={50}
                           width={50}
@@ -81,7 +81,7 @@ const { title, testimonials } = Astro.props;
 <style>
   .swiper-button-prev,
   .swiper-button-next {
-    @apply hidden lg:flex justify-center items-center w-10 h-10 rounded-md bg-body cursor-pointer shadow-sm text-dark opacity-0 transition-opacity duration-300 ease-in-out;
+    @apply bg-body text-dark hidden h-10 w-10 cursor-pointer items-center justify-center rounded-md opacity-0 shadow-sm transition-opacity duration-300 ease-in-out lg:flex;
   }
 
   .testimonials-wrapper:hover .swiper-button-prev,

@@ -3,7 +3,7 @@ import React from "react";
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
-import 'swiper/css/navigation';
+import "swiper/css/navigation";
 
 // import required modules
 import { Autoplay, Pagination, Navigation } from "swiper/modules";
@@ -15,7 +15,7 @@ const HeroSlider = ({ products }: { products: Product[] }) => {
       <Swiper
         autoplay={{
           delay: 3000, // Delay between transitions (in milliseconds)
-          disableOnInteraction: false // Continue autoplay even after user interaction
+          disableOnInteraction: false, // Continue autoplay even after user interaction
         }}
         navigation={true}
         pagination={{
@@ -29,14 +29,14 @@ const HeroSlider = ({ products }: { products: Product[] }) => {
           <SwiperSlide key={item.id}>
             <div className="row items-center px-7 xl:px-16">
               <div className="sm:col-12 lg:col-6 order-2 lg:order-0">
-                <div className="text-center py-10 lg:py-0">
+                <div className="py-10 text-center lg:py-0">
                   {item?.description && (
-                    <p className="mb-2 lg:mb-3 text-light dark:text-darkmode-light font-medium md:text-xl">
+                    <p className="text-light dark:text-darkmode-light mb-2 font-medium md:text-xl lg:mb-3">
                       {item.description}
                     </p>
                   )}
                   <div className="row">
-                    <h1 className="mb-4 lg:mb-10 col-10 sm:col-8 lg:col-12 mx-auto">
+                    <h1 className="col-10 sm:col-8 lg:col-12 mx-auto mb-4 lg:mb-10">
                       {item.title}
                     </h1>
                   </div>

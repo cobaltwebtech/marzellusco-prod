@@ -49,22 +49,19 @@ const NavUser = ({ pathname }: { pathname: string }) => {
       {user ? (
         <button
           onClick={toggleDropdown}
-          className="relative cursor-pointer text-left sm:text-xs flex items-center justify-center"
+          className="relative flex cursor-pointer items-center justify-center text-left sm:text-xs"
         >
           <div className="flex items-center gap-x-1">
-            <div className="h-6 w-6 border border-darkmode-border dark:border-border rounded-full">
-              <Gravatar
-                email={user?.email}
-                style={{ borderRadius: "50px" }}
-              />
+            <div className="border-darkmode-border dark:border-border h-6 w-6 rounded-full border">
+              <Gravatar email={user?.email} style={{ borderRadius: "50px" }} />
             </div>
             <div className="leading-none max-md:hidden">
               <div className="flex items-center">
-                <p className="block text-dark dark:text-darkmode-dark text-base truncate">
+                <p className="text-dark dark:text-darkmode-dark block truncate text-base">
                   {user?.firstName}
                 </p>
                 <svg
-                  className={`w-5 text-dark dark:text-darkmode-dark dark:hover:text-darkmode-primary`}
+                  className={`text-dark dark:text-darkmode-dark dark:hover:text-darkmode-primary w-5`}
                   fill="currentColor"
                   viewBox="0 0 20 20"
                   aria-hidden="true"
@@ -81,7 +78,7 @@ const NavUser = ({ pathname }: { pathname: string }) => {
         </button>
       ) : (
         <a
-          className="text-xl text-dark hover:text-primary dark:border-darkmode-border dark:text-white flex items-center"
+          className="text-dark hover:text-primary dark:border-darkmode-border flex items-center text-xl dark:text-white"
           href="/login"
           aria-label="login"
         >
@@ -90,8 +87,11 @@ const NavUser = ({ pathname }: { pathname: string }) => {
       )}
 
       {dropdownOpen && (
-        <div className="z-20 text-center absolute w-full bg-white shadow-md rounded mt-2">
-          <button onClick={handleLogout} className="btn btn-primary max-md:btn-sm mt-2">
+        <div className="absolute z-20 mt-2 w-full rounded bg-white text-center shadow-md">
+          <button
+            onClick={handleLogout}
+            className="btn btn-primary max-md:btn-sm mt-2"
+          >
             Logout
           </button>
         </div>

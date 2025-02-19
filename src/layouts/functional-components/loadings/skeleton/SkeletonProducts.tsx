@@ -6,26 +6,26 @@ const SkeletonProducts = () => {
       <div className="container">
         <div className="row gy-4">
           <div className="col-12 lg:col-3">
-            <div className="hidden lg:block h-8 mb-4 rounded-md animate-pulse bg-neutral-200 dark:bg-neutral-700" />
-            <div className="hidden lg:block h-full rounded-md animate-pulse bg-neutral-200 dark:bg-neutral-700" />
+            <div className="mb-4 hidden h-8 animate-pulse rounded-md bg-neutral-200 lg:block dark:bg-neutral-700" />
+            <div className="hidden h-full animate-pulse rounded-md bg-neutral-200 lg:block dark:bg-neutral-700" />
           </div>
 
           <div className="col-12 lg:col-9">
             <div>
               <div className="flex justify-between">
-                <div className="h-8 w-2/12 mb-4 rounded-md animate-pulse bg-neutral-200 dark:bg-neutral-700" />
-                <div className="h-8 w-3/12 mb-4 rounded-md animate-pulse bg-neutral-200 dark:bg-neutral-700" />
+                <div className="mb-4 h-8 w-2/12 animate-pulse rounded-md bg-neutral-200 dark:bg-neutral-700" />
+                <div className="mb-4 h-8 w-3/12 animate-pulse rounded-md bg-neutral-200 dark:bg-neutral-700" />
               </div>
-              <div className="grid grid-cols-2 lg:grid-cols-3 gap-4">
+              <div className="grid grid-cols-2 gap-4 lg:grid-cols-3">
                 {Array(9)
                   .fill(0)
                   .map((_, index) => {
                     return (
                       <div key={index}>
-                        <div className="h-[150px] md:h-[269px] rounded-md animate-pulse bg-neutral-200 dark:bg-neutral-700" />
-                        <div className="flex flex-col justify-center items-center">
-                          <div className="mt-4 w-24 h-3 rounded-full animate-pulse bg-neutral-200 dark:bg-neutral-700"></div>
-                          <div className="mt-2 w-16 h-2 rounded-full animate-pulse bg-neutral-200 dark:bg-neutral-700"></div>
+                        <div className="h-[150px] animate-pulse rounded-md bg-neutral-200 md:h-[269px] dark:bg-neutral-700" />
+                        <div className="flex flex-col items-center justify-center">
+                          <div className="mt-4 h-3 w-24 animate-pulse rounded-full bg-neutral-200 dark:bg-neutral-700"></div>
+                          <div className="mt-2 h-2 w-16 animate-pulse rounded-full bg-neutral-200 dark:bg-neutral-700"></div>
                         </div>
                       </div>
                     );

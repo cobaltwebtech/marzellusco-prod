@@ -22,20 +22,26 @@ export const generateImageMap = (images: ImageItem[]) => {
   return imageMap;
 };
 
-export function VariantSelector({ options, variants, images }: {
+export function VariantSelector({
+  options,
+  variants,
+  images,
+}: {
   options: ProductOption[];
   variants: ProductVariant[];
   images: ImageItem[];
 }) {
-  const [selectedOptions, setSelectedOptions] = useState<Record<string, string | undefined>>({});
+  const [selectedOptions, setSelectedOptions] = useState<
+    Record<string, string | undefined>
+  >({});
 
   const imageMap = generateImageMap(images);
 
   useEffect(() => {
     const searchParams = new URLSearchParams(window.location.search);
     const newSelectedOptions: Record<string, string | undefined> = {};
-    
-    options.forEach(option => {
+
+    options.forEach((option) => {
       const value = searchParams.get(option.name.toLowerCase());
       if (value) {
         newSelectedOptions[option.name.toLowerCase()] = value;
@@ -48,7 +54,11 @@ export function VariantSelector({ options, variants, images }: {
   const updateUrl = (param: string, value: string) => {
     const params = new URLSearchParams(window.location.search);
     params.set(param, value);
-    window.history.replaceState({}, "", `${window.location.pathname}?${params.toString()}`);
+    window.history.replaceState(
+      {},
+      "",
+      `${window.location.pathname}?${params.toString()}`,
+    );
   };
 
   const handleOptionChange = (optionName: string, value: string) => {
@@ -59,23 +69,24 @@ export function VariantSelector({ options, variants, images }: {
     updateUrl(optionName, value);
 
     const updatedOptions = { ...selectedOptions, [optionName]: value };
-    const allOptionsSelected = options.every(option => 
-      updatedOptions[option.name.toLowerCase()] !== undefined
+    const allOptionsSelected = options.every(
+      (option) => updatedOptions[option.name.toLowerCase()] !== undefined,
     );
 
     if (allOptionsSelected) {
-      const selectedVariant = variants.find(variant =>
-        variant.selectedOptions.every(option =>
-          updatedOptions[option.name.toLowerCase()] === option.value
-        )
+      const selectedVariant = variants.find((variant) =>
+        variant.selectedOptions.every(
+          (option) =>
+            updatedOptions[option.name.toLowerCase()] === option.value,
+        ),
       );
 
       if (selectedVariant) {
-        const event = new CustomEvent('variantChanged', { 
-          detail: { 
+        const event = new CustomEvent("variantChanged", {
+          detail: {
             variantId: selectedVariant.id,
-            availableForSale: selectedVariant.availableForSale
-          } 
+            availableForSale: selectedVariant.availableForSale,
+          },
         });
         window.dispatchEvent(event);
       }
@@ -90,32 +101,33 @@ export function VariantSelector({ options, variants, images }: {
         ...accumulator,
         [option.name.toLowerCase()]: option.value,
       }),
-      {}
+      {},
     ),
   }));
 
   const filteredOptions = options.filter(
-    (option) => !(option.name === "Title" && option.values.includes("Default Title"))
+    (option) =>
+      !(option.name === "Title" && option.values.includes("Default Title")),
   );
 
-  const sizeOption = options.find((option) => option.name.toLowerCase() === "size");
+  const sizeOption = options.find(
+    (option) => option.name.toLowerCase() === "size",
+  );
 
   return (
     <div>
       {filteredOptions
-        .filter(option => option.name.toLowerCase() !== 'size')
+        .filter((option) => option.name.toLowerCase() !== "size")
         .map((option) => (
-          <div key={option.id}>
-            <h5 className="mb-2 max-md:text-base">
-              {option.name}
-            </h5>
+          <div key={option.id} className="mb-8">
+            <h5 className="mb-2 max-md:text-base">{option.name}</h5>
             <div className="flex flex-wrap gap-3">
               {option.values.map((value) => {
                 const optionNameLowerCase = option.name.toLowerCase();
                 const isAvailableForSale = combinations.some(
                   (combination: Combination) =>
                     combination[optionNameLowerCase] === value &&
-                    combination.availableForSale
+                    combination.availableForSale,
                 );
 
                 const isActive = selectedOptions[optionNameLowerCase] === value;
@@ -130,15 +142,14 @@ export function VariantSelector({ options, variants, images }: {
                       aria-label={`${option.name} ${value}${!isAvailableForSale ? " (Out of Stock)" : ""}`}
                       aria-disabled={!isAvailableForSale}
                       disabled={!isAvailableForSale}
-                      onClick={() => handleOptionChange(optionNameLowerCase, value)}
-                      className={`flex min-w-[48px] items-center justify-center rounded-md border text-sm 
-                        ${isActive ? "cursor-default ring-2 ring-dark dark:ring-darkmode-dark" : ""}
-                        ${!isActive && isAvailableForSale ? "ring-1 ring-transparent transition duration-300 ease-in-out hover:scale-110 hover:ring-dark hover:dark:ring-darkmode-dark" : ""}
-                        ${!isAvailableForSale ? "relative z-10 cursor-not-allowed overflow-hidden bg-neutral-100 text-neutral-500 dark:bg-neutral-900 dark:text-neutral-400" : ""}`}
+                      onClick={() =>
+                        handleOptionChange(optionNameLowerCase, value)
+                      }
+                      className={`flex min-w-[48px] items-center justify-center rounded-md border text-sm ${isActive ? "ring-dark dark:ring-darkmode-dark cursor-default ring-2" : ""} ${!isActive && isAvailableForSale ? "hover:ring-dark hover:dark:ring-darkmode-dark ring-1 ring-transparent transition duration-300 ease-in-out hover:scale-110" : ""} ${!isAvailableForSale ? "relative z-10 cursor-not-allowed overflow-hidden bg-neutral-100 text-neutral-500 dark:bg-neutral-900 dark:text-neutral-400" : ""}`}
                     >
                       {option.name.toLowerCase() === "color" ? (
                         <div
-                          className={`relative rounded-md overflow-hidden ${isActive ? "bg-black outline outline-1 outline-dark dark:outline-darkmode-dark" : ""}`}
+                          className={`relative overflow-visible rounded-md ${isActive ? "outline-dark dark:outline-darkmode-dark bg-black outline outline-1" : ""}`}
                         >
                           <img
                             src={imageMap[value]}
@@ -148,9 +159,14 @@ export function VariantSelector({ options, variants, images }: {
                             className={`${isActive ? "opacity-60" : ""}`}
                           />
                           {isActive && (
-                            <span className="text-inherit h-full opacity-100 absolute top-2 right-2">
-                              <BsCheckLg size={35} className="text-green-400"/>
-                            </span>
+                            <div className="absolute top-2 right-2 h-full text-inherit opacity-100">
+                              <BsCheckLg size={35} className="text-green-400" />
+                            </div>
+                          )}
+                          {isActive && (
+                            <div className="absolute -bottom-8 font-semibold text-inherit">
+                              {value}
+                            </div>
                           )}
                         </div>
                       ) : (
@@ -162,16 +178,17 @@ export function VariantSelector({ options, variants, images }: {
               })}
             </div>
           </div>
-        ))
-      }
+        ))}
 
       {sizeOption && (
-        <div className="mb-8 mt-8">
+        <div className="mt-12 mb-8">
           <h5 className="mb-2 max-md:text-base">{sizeOption.name}</h5>
           <VariantDropDown
             sizeOption={sizeOption}
             selectedSize={selectedOptions[sizeOption.name.toLowerCase()]}
-            onSizeChange={(value: string) => handleOptionChange(sizeOption.name.toLowerCase(), value)}
+            onSizeChange={(value: string) =>
+              handleOptionChange(sizeOption.name.toLowerCase(), value)
+            }
             combinations={combinations}
             selectedOptions={selectedOptions}
           />

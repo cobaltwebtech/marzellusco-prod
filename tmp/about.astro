@@ -35,11 +35,11 @@ const {
     <div class="container">
       {
         about_us?.map((section: AboutUsItem, index: number) => (
-          <div class={`lg:flex gap-8 mt-14 lg:mt-28`}>
+          <div class={`mt-14 gap-8 lg:mt-28 lg:flex`}>
             {index % 2 === 0 ? (
               <>
                 <ImageMod
-                  class="rounded-md mx-auto"
+                  class="mx-auto rounded-md"
                   src={section?.image}
                   width={536}
                   height={449}
@@ -48,11 +48,11 @@ const {
                 <div class="mt-10 lg:mt-0">
                   <h2 class="mb-6">{section?.title}</h2>
                   <p
-                    class="mb-4 text-light dark:text-darkmode-light leading-7"
+                    class="text-light dark:text-darkmode-light mb-4 leading-7"
                     set:html={markdownify(section?.content1)}
                   />
                   <p
-                    class="mb-4 text-light dark:text-darkmode-light leading-7"
+                    class="text-light dark:text-darkmode-light mb-4 leading-7"
                     set:html={markdownify(section?.content2)}
                   />
                 </div>
@@ -62,16 +62,16 @@ const {
                 <div>
                   <h2 class="mb-6">{section.title}</h2>
                   <p
-                    class="mb-4 text-light dark:text-darkmode-light leading-7"
+                    class="text-light dark:text-darkmode-light mb-4 leading-7"
                     set:html={markdownify(section?.content1)}
                   />
                   <p
-                    class="mb-4 text-light dark:text-darkmode-light leading-7"
+                    class="text-light dark:text-darkmode-light mb-4 leading-7"
                     set:html={markdownify(section?.content2)}
                   />
                 </div>
                 <ImageMod
-                  class="rounded-md mx-auto mt-10 lg:mt-0"
+                  class="mx-auto mt-10 rounded-md lg:mt-0"
                   src={section.image}
                   width={536}
                   height={449}
@@ -87,11 +87,11 @@ const {
   <section class="section">
     <div class="container">
       <div
-        class="bg-theme-light px-7 py-20 dark:bg-darkmode-theme-light text-center rounded-md"
+        class="bg-theme-light dark:bg-darkmode-theme-light rounded-md px-7 py-20 text-center"
       >
         <h2>Reasons to shop with us</h2>
 
-        <div class="row justify-center gap-6 mt-14">
+        <div class="row mt-14 justify-center gap-6">
           <div class="col-6 md:col-5 lg:col-3">
             <div class="flex justify-center">
               <FaHeadset size={48} />
@@ -124,10 +124,10 @@ const {
   <section>
     <div class="container">
       <div
-        class="bg-theme-light px-7 lg:px-32 py-20 dark:bg-darkmode-theme-light mb-14 xl:mb-28 rounded-md"
+        class="bg-theme-light dark:bg-darkmode-theme-light mb-14 rounded-md px-7 py-20 lg:px-32 xl:mb-28"
       >
         <div class="row">
-          <div class="md:col-5 mx-auto space-y-5 mb-10 md:mb-0">
+          <div class="md:col-5 mx-auto mb-10 space-y-5 md:mb-0">
             <h1 set:html={markdownify(faq_section_title!)} />
             <p
               set:html={markdownify(faq_section_subtitle!)}

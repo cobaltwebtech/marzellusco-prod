@@ -33,7 +33,7 @@ const ProductGallery = ({ images }: { images: ImageItem[] }) => {
 
   const altTextArray = images.map((item) => item.altText);
   const filteredImages = images.filter(
-    (item) => item.altText === altTextArray[activeIndex]
+    (item) => item.altText === altTextArray[activeIndex],
   );
 
   // Listen to URL changes using popstate and polling
@@ -77,7 +77,7 @@ const ProductGallery = ({ images }: { images: ImageItem[] }) => {
 
   const handleThumbSlideClick = (clickedUrl: string) => {
     const foundIndex = filteredImages.findIndex(
-      (item) => item.url === clickedUrl
+      (item) => item.url === clickedUrl,
     );
     if (foundIndex !== -1) {
       setActiveIndex(foundIndex);
@@ -114,23 +114,23 @@ const ProductGallery = ({ images }: { images: ImageItem[] }) => {
                 width={722}
                 height={623}
                 zoomType="hover"
-                className="mb-6 border border-border dark:border-light rounded-md max-h-[623px]"
+                className="border-border dark:border-darkmode-border mb-6 max-h-[623px] rounded-md border"
               />
             </SwiperSlide>
           ))}
           <div
             id="navigation"
-            className={`block w-full absolute top-1/2 -translate-y-1/2 z-10 px-6 text-dark`}
+            className={`text-dark absolute top-1/2 z-10 block w-full -translate-y-1/2 px-6`}
           >
             <div
               ref={prevRef}
-              className="p-2 lg:p-4 rounded-md bg-body cursor-pointer shadow-sm absolute left-4"
+              className="bg-body absolute left-4 cursor-pointer rounded-md p-2 shadow-sm lg:p-4"
             >
               <HiOutlineArrowNarrowLeft size={24} />
             </div>
             <div
               ref={nextRef}
-              className="p-2 lg:p-4 rounded-md bg-body cursor-pointer shadow-sm absolute right-4"
+              className="bg-body absolute right-4 cursor-pointer rounded-md p-2 shadow-sm lg:p-4"
             >
               <HiOutlineArrowNarrowRight size={24} />
             </div>
@@ -149,10 +149,11 @@ const ProductGallery = ({ images }: { images: ImageItem[] }) => {
           <SwiperSlide key={item.url}>
             <div
               onClick={() => handleThumbSlideClick(item.url)}
-              className={`rounded-md cursor-pointer overflow-hidden ${picUrl === item.url
-                ? "border border-darkmode-border dark:border-yellow-500"
-                : "border border-border dark:border-light"
-                }`}
+              className={`cursor-pointer overflow-hidden rounded-md ${
+                picUrl === item.url
+                  ? "border-theme-dark dark:border-darkmode-dark border"
+                  : "border-border dark:border-darkmode-border border"
+              }`}
             >
               <img
                 src={item.url}

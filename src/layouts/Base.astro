@@ -1,31 +1,14 @@
 ---
 import TwSizeIndicator from "@/components/TwSizeIndicator.astro";
 import config from "@/config/config.json";
-import theme from "@/config/theme.json";
 import { plainify } from "@/lib/utils/textConverter";
 import Footer from "@/partials/Footer.astro";
 import Header from "@/partials/Header.astro";
-import "@/styles/main.scss";
 import { AstroFont } from "astro-font";
-import { ViewTransitions } from "astro:transitions";
+import { ClientRouter } from "astro:transitions";
+import "@/styles/global.css";
 
 const umamiId = import.meta.env.UMAMI_WEBSITE_ID;
-
-// font families
-const pf = theme.fonts.font_family.primary;
-const sf = theme.fonts.font_family.secondary;
-
-let fontPrimary, fontSecondary;
-if (theme.fonts.font_family.primary) {
-  fontPrimary = theme.fonts.font_family.primary
-    .replace(/\+/g, " ")
-    .replace(/:[ital,]*[ital@]*[wght@]*[0-9,;.]+/gi, "");
-}
-if (theme.fonts.font_family.secondary) {
-  fontSecondary = theme.fonts.font_family.secondary
-    .replace(/\+/g, " ")
-    .replace(/:[ital,]*[ital@]*[wght@]*[0-9,;.]+/gi, "");
-}
 
 // types for frontmatters
 export interface Props {
@@ -39,11 +22,17 @@ export interface Props {
 }
 
 // destructure frontmatter
-const { title, meta_title, description, image, noindex, canonical, isHomePage } =
-  Astro.props;
+const {
+  title,
+  meta_title,
+  description,
+  image,
+  noindex,
+  canonical,
+  isHomePage,
+} = Astro.props;
 ---
 
-<!doctype html>
 <html lang="en" class="scrollbar-hide lenis lenis-smooth">
   <head>
     <!-- favicon -->
@@ -71,10 +60,9 @@ const { title, meta_title, description, image, noindex, canonical, isHomePage } 
           src: [],
           preload: true,
           display: "swap",
-          name: fontPrimary!,
+          name: "IBM Plex Sans",
           fallback: "sans-serif",
-          cssVariable: "font-primary",
-          googleFontsURL: `https://fonts.bunny.net/css?family=${pf}&display=swap`,
+          googleFontsURL: `https://fonts.bunny.net/css?family=ibm-plex-sans:400,500,700&display=swap`,
         },
       ]}
     />
@@ -93,21 +81,33 @@ const { title, meta_title, description, image, noindex, canonical, isHomePage } 
     <!--Import Lenis smooth scroll script -->
     <script>
       import "@/layouts/functional-components/LenisSmoothScroll";
-    </script>    
+    </script>
     <!-- Umami Analytics script tag -->
-    <script defer src="https://umami.cobaltweb.tech/script.js" data-website-id={umamiId}></script>
+    <script
+      defer
+      src="https://umami.cobaltweb.tech/script.js"
+      data-website-id={umamiId}></script>
 
     <!-- Google Tag Manager script tag -->
     <script is:inline>
-    (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-      'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-      })(window,document,'script','dataLayer','GTM-5F9863D3');
+      (function (w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
+        var f = d.getElementsByTagName(s)[0],
+          j = d.createElement(s),
+          dl = l != "dataLayer" ? "&l=" + l : "";
+        j.async = true;
+        j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
+        f.parentNode.insertBefore(j, f);
+      })(window, document, "script", "dataLayer", "GTM-5F9863D3");
     </script>
 
-    <!-- preconnect third party resources -->
-    {isHomePage && (<link rel="preconnect" href="https://iframe.mediadelivery.net" />)}
+    <!-- Preconnect third party resources -->
+    {
+      isHomePage && (
+        <link rel="preconnect" href="https://iframe.mediadelivery.net" />
+      )
+    }
     <link rel="preconnect" href="https://cdn.shopify.com" />
 
     <!-- Sitemap index -->
@@ -126,8 +126,6 @@ const { title, meta_title, description, image, noindex, canonical, isHomePage } 
         description ? description : config.metadata.meta_description,
       )}
     />
-
-    <ViewTransitions />
 
     <!-- author from config.json -->
     <meta name="author" content={config.metadata.meta_author} />
@@ -185,14 +183,22 @@ const { title, meta_title, description, image, noindex, canonical, isHomePage } 
       }`}
     />
     <meta name="twitter:card" content="summary_large_image" />
+    <ClientRouter />
   </head>
-  <body>
+  <body
+    class="bg-body text-text dark:bg-darkmode-body dark:text-darkmode-text text-base leading-relaxed font-normal"
+  >
     <!-- Google Tag Manager (noscript) -->
     <noscript>
-      <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5F9863D3" height="0" width="0" style="display:none;visibility:hidden">
+      <iframe
+        src="https://www.googletagmanager.com/ns.html?id=GTM-5F9863D3"
+        height="0"
+        width="0"
+        style="display:none;visibility:hidden"
+      >
       </iframe>
     </noscript>
-  <!-- End Google Tag Manager (noscript) -->
+    <!-- End Google Tag Manager (noscript) -->
     <TwSizeIndicator />
     <Header />
     <main id="main-content">

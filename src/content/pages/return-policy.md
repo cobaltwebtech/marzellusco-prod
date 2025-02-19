@@ -6,4 +6,5 @@ draft: false
 ---
 
 ## Return of merchandise and exchange policy
+
 Place text here when finalized.

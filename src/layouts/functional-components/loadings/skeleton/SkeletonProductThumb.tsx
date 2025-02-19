@@ -4,7 +4,7 @@ const SkeletonProductThumb = () => {
   return (
     <div className="row justify-center">
       <div>
-        <div className="h-[323px] md:h-[623px] rounded-md animate-pulse bg-neutral-200 dark:bg-neutral-700 mb-4"></div>
+        <div className="mb-4 h-[323px] animate-pulse rounded-md bg-neutral-200 md:h-[623px] dark:bg-neutral-700"></div>
 
         <div className="grid grid-cols-4 gap-x-4">
           {Array(4)
@@ -13,7 +13,7 @@ const SkeletonProductThumb = () => {
               return (
                 <div
                   key={index}
-                  className="h-[80px] md:h-[146px] rounded-md animate-pulse bg-neutral-200 dark:bg-neutral-700"
+                  className="h-[80px] animate-pulse rounded-md bg-neutral-200 md:h-[146px] dark:bg-neutral-700"
                 />
               );
             })}

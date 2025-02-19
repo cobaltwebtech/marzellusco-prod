@@ -42,23 +42,23 @@ import { BiLoaderAlt } from "react-icons/bi";
 
             <button
               type="submit"
-              class="btn btn-primary md:text-lg md:font-medium w-full mt-10"
+              class="btn btn-primary mt-10 w-full md:text-lg md:font-medium"
             >
               <span id="buttonText">Log In</span>
               <BiLoaderAlt
-                className="animate-spin mx-auto hidden"
+                className="mx-auto hidden animate-spin"
                 size={26}
                 id="loader"
               />
             </button>
           </form>
 
-          <div class="flex gap-x-2 text-sm md:text-base mt-4">
+          <div class="mt-4 flex gap-x-2 text-sm md:text-base">
             <p class="text-light dark:text-darkmode-light">
               Don't have an account?
             </p>
             <a
-              class="underline font-medium text-dark dark:text-darkmode-dark"
+              class="text-dark dark:text-darkmode-dark font-medium underline"
               href="/sign-up"
             >
               Register

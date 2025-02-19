@@ -1,9 +1,9 @@
 import config from "@/config/config.json";
 import { defaultSort, sorting } from "@/lib/constants";
-import type { PageInfo, Product } from '@/lib/shopify/types';
-import React, { useEffect, useRef, useState } from 'react';
+import type { PageInfo, Product } from "@/lib/shopify/types";
+import React, { useEffect, useRef, useState } from "react";
 import { BiLoaderAlt } from "react-icons/bi";
-import { AddToCart } from './cart/AddToCart';
+import { AddToCart } from "./cart/AddToCart";
 import Price from "@/functional-components/Price";
 
 const ProductList = ({
@@ -11,7 +11,7 @@ const ProductList = ({
   initialPageInfo,
   sortKey,
   reverse,
-  searchValue
+  searchValue,
 }: {
   initialProducts: Product[];
   initialPageInfo: PageInfo;
@@ -29,7 +29,8 @@ const ProductList = ({
   const loaderRef = useRef(null);
 
   const getSortParams = (sortKey: string) => {
-    const sortOption = sorting.find((item) => item.slug === sortKey) || defaultSort;
+    const sortOption =
+      sorting.find((item) => item.slug === sortKey) || defaultSort;
     return { sortKey: sortOption.sortKey, reverse: sortOption.reverse };
   };
 
@@ -39,16 +40,17 @@ const ProductList = ({
     setLoading(true);
     try {
       const response = await fetch(
-        `/api/products.json?cursor=${pageInfo.endCursor || ''}&sortKey=${currentSortKey}&reverse=${currentReverse}`
+        `/api/products.json?cursor=${pageInfo.endCursor || ""}&sortKey=${currentSortKey}&reverse=${currentReverse}`,
       );
-      if (!response.ok) throw new Error('Failed to fetch');
-      const { products: newProducts, pageInfo: newPageInfo } = await response.json();
+      if (!response.ok) throw new Error("Failed to fetch");
+      const { products: newProducts, pageInfo: newPageInfo } =
+        await response.json();
 
       setProducts((prevProducts) => [...prevProducts, ...newProducts]);
       setPageInfo(newPageInfo);
       setSortChanged(false);
     } catch (error) {
-      console.error('Error loading more products:', error);
+      console.error("Error loading more products:", error);
     } finally {
       setLoading(false);
     }
@@ -58,7 +60,8 @@ const ProductList = ({
     const params = new URLSearchParams(window.location.search);
     const newSortKey = params.get("sortKey") || sortKey;
 
-    const { sortKey: mappedSortKey, reverse: mappedReverse } = getSortParams(newSortKey);
+    const { sortKey: mappedSortKey, reverse: mappedReverse } =
+      getSortParams(newSortKey);
 
     // Update only if URL params differ from current state
     if (mappedSortKey !== currentSortKey || mappedReverse !== currentReverse) {
@@ -92,7 +95,7 @@ const ProductList = ({
             loadMoreProducts();
           }
         },
-        { threshold: 1.0 }
+        { threshold: 1.0 },
       );
 
       if (loaderRef.current) {
@@ -110,9 +113,9 @@ const ProductList = ({
   const resultsText = products.length > 1 ? "results" : "result";
 
   return (
-    <div className="row mx-auto">
+    <div className="mx-auto">
       {searchValue ? (
-        <p className="mb-4">
+        <p className="mb-4 text-center">
           {products.length === 0
             ? "There are no products that match "
             : `Showing ${products.length} ${resultsText} for `}
@@ -153,34 +156,33 @@ const ProductList = ({
             variants.length > 0 ? variants[0].id : undefined;
 
           return (
-            <div className="col-12" key={id}>
-              <div className="row">
-                <div className="col-4">
-                  <img
-                    src={featuredImage?.url || "/images/product_image404.jpg"}
-                    // fallback={'/images/category-1.png'}
-                    width={312}
-                    height={269}
-                    alt={featuredImage?.altText || "fallback image"}
-                    className="w-[312px] h-[150px] md:h-[269px] object-cover border dark:border-darkmode-border rounded-md"
-                  />
+            <div key={id}>
+              <div className="flex flex-row gap-4">
+                <div className="basis-1/3">
+                  <a href={`/products/${handle}`}>
+                    <img
+                      src={featuredImage?.url || "/images/product_image404.jpg"}
+                      // fallback={'/images/category-1.png'}
+                      width={312}
+                      height={269}
+                      alt={featuredImage?.altText || "fallback image"}
+                      className="border-border dark:border-darkmode-border h-[150px] w-[312px] rounded-md border object-cover md:h-[269px]"
+                    />
+                  </a>
                 </div>
 
-                <div className="col-8 py-3 max-md:pt-4">
-                  <h2 className="font-bold md:font-normal h4">
+                <div className="basis-2/3 py-3 max-md:pt-4">
+                  <h2 className="h4 font-bold md:font-normal">
                     <a href={`/products/${handle}`}>{title}</a>
                   </h2>
 
-                  <div className="flex items-center gap-x-2 mt-2">
-                    <span className="text-light dark:text-darkmode-light text-xs md:text-lg font-bold">
-                      <Price
-                        amount={priceRange?.minVariantPrice.amount}
-                      />
+                  <div className="mt-2 flex items-center gap-x-2">
+                    <span className="text-text dark:text-darkmode-text text-xs font-bold md:text-lg">
+                      <Price amount={priceRange?.minVariantPrice.amount} />
                     </span>
-                    {parseFloat(
-                      compareAtPriceRange?.maxVariantPrice?.amount,
-                    ) > 0 ? (
-                      <s className="text-light dark:text-darkmode-light text-xs md:text-base font-medium">
+                    {parseFloat(compareAtPriceRange?.maxVariantPrice?.amount) >
+                    0 ? (
+                      <s className="text-light dark:text-darkmode-light text-xs font-medium md:text-base">
                         <Price
                           amount={compareAtPriceRange?.maxVariantPrice?.amount}
                         />
@@ -190,7 +192,7 @@ const ProductList = ({
                     )}
                   </div>
 
-                  <p className="max-md:text-xs text-light dark:text-darkmode-light my-4 md:mb-8 line-clamp-1 md:line-clamp-3">
+                  <p className="text-light dark:text-darkmode-light my-4 line-clamp-1 max-md:text-xs md:mb-8 md:line-clamp-3">
                     {description}
                   </p>
                   <AddToCart
@@ -210,8 +212,12 @@ const ProductList = ({
       </div>
 
       {pageInfo?.hasNextPage && (
-        <div ref={loaderRef} className="text-center py-4">
-          {loading ? <BiLoaderAlt className={`animate-spin`} size={30} /> : 'Scroll for more'}
+        <div ref={loaderRef} className="py-4 text-center">
+          {loading ? (
+            <BiLoaderAlt className={`animate-spin`} size={30} />
+          ) : (
+            "Scroll for more"
+          )}
         </div>
       )}
     </div>

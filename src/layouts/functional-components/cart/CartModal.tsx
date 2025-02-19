@@ -54,17 +54,19 @@ const CartModal: React.FC = () => {
 
       <div
         id="cartOverlay"
-        className={`fixed inset-0 bg-black bg-opacity-50 z-40 transition-opacity ${isOpen ? "block" : "hidden"
-          }`}
+        className={`bg-opacity-50 fixed inset-0 z-40 bg-black transition-opacity ${
+          isOpen ? "block" : "hidden"
+        }`}
         onClick={closeCart}
       ></div>
 
       <div
         id="cartDialog"
-        className={`fixed inset-y-0 right-0 z-50 w-full md:w-[460px] transform transition-transform duration-300 ease-in-out ${isOpen ? "translate-x-0" : "translate-x-full"
-          }`}
+        className={`fixed inset-y-0 right-0 z-50 w-full transform transition-transform duration-300 ease-in-out md:w-[460px] ${
+          isOpen ? "translate-x-0" : "translate-x-full"
+        }`}
       >
-        <div className="h-fit flex flex-col border-l border-b drop-shadow-lg rounded-bl-md border-neutral-200 bg-body p-6 text-black dark:border-neutral-700 dark:bg-darkmode-body dark:text-white">
+        <div className="bg-body dark:bg-darkmode-body flex h-fit flex-col rounded-bl-md border-b border-l border-neutral-200 p-6 text-black drop-shadow-lg dark:border-neutral-700 dark:text-white">
           <div className="flex items-center justify-between">
             <p className="text-lg font-semibold">Your Cart</p>
             <button aria-label="Close cart" onClick={closeCart}>
@@ -72,10 +74,10 @@ const CartModal: React.FC = () => {
             </button>
           </div>
 
-          <div className="w-full h-px absolute bg-dark dark:bg-darkmode-dark left-0 top-16"></div>
+          <div className="bg-dark dark:bg-darkmode-dark absolute top-16 left-0 h-px w-full"></div>
 
           {currentCart.lines.length === 0 ? (
-            <div className="flex flex-col justify-center items-center space-y-6 my-auto">
+            <div className="my-auto flex flex-col items-center justify-center space-y-6">
               <div className="md:mt-16">
                 <FaShoppingCart size={76} />
               </div>
@@ -174,11 +176,11 @@ const CartModal: React.FC = () => {
                     currencyCode={currentCart.cost.totalTaxAmount.currencyCode}
                   />
                 </div>
-                <div className="mb-3 flex items-center justify-between border-b border-neutral-200 pb-1 pt-1 dark:border-neutral-700">
+                <div className="mb-3 flex items-center justify-between border-b border-neutral-200 pt-1 pb-1 dark:border-neutral-700">
                   <p>Shipping</p>
                   <p className="text-right">Calculated at checkout</p>
                 </div>
-                <div className="mb-3 flex items-center justify-between border-b border-neutral-200 pb-1 pt-1 dark:border-neutral-700">
+                <div className="mb-3 flex items-center justify-between border-b border-neutral-200 pt-1 pb-1 dark:border-neutral-700">
                   <p>Total</p>
                   <Price
                     className="text-right text-base text-black dark:text-white"
@@ -190,7 +192,7 @@ const CartModal: React.FC = () => {
 
               <a
                 href={currentCart.checkoutUrl}
-                className="block w-full rounded-md bg-dark dark:bg-darkmode-dark p-3 text-center text-sm font-medium text-darkmode-light dark:text-dark opacity-90 hover:opacity-100"
+                className="bg-dark text-darkmode-light dark:bg-darkmode-dark dark:text-dark block w-full rounded-md p-3 text-center text-sm font-medium opacity-90 hover:opacity-100"
               >
                 Proceed to Checkout
               </a>

@@ -1,11 +1,11 @@
-import { layoutView } from '@/cartStore';
-import type { PageInfo, Product } from '@/lib/shopify/types';
-import { useStore } from '@nanostores/react';
-import React, { Suspense, lazy } from 'react';
-import SkeletonCards from './loadings/skeleton/SkeletonCards';
+import { layoutView } from "@/cartStore";
+import type { PageInfo, Product } from "@/lib/shopify/types";
+import { useStore } from "@nanostores/react";
+import React, { Suspense, lazy } from "react";
+import SkeletonCards from "./loadings/skeleton/SkeletonCards";
 
-const ProductGrid = lazy(() => import('./ProductGrid'));
-const ProductList = lazy(() => import('./ProductList'));
+const ProductGrid = lazy(() => import("./ProductGrid"));
+const ProductList = lazy(() => import("./ProductList"));
 
 const ProductLayoutViews = ({
   initialProducts,
@@ -23,9 +23,9 @@ const ProductLayoutViews = ({
   const layout = useStore(layoutView);
 
   return (
-    <div className="col-12 lg:col-9">
+    <div className="col-span-4 lg:col-span-3">
       <Suspense fallback={<SkeletonCards />}>
-        {layout === 'list' ? (
+        {layout === "list" ? (
           <ProductList
             initialProducts={initialProducts}
             initialPageInfo={initialPageInfo}

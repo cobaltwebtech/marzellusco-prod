@@ -20,7 +20,8 @@ const ProductLayouts = ({
   vendorsWithCounts,
   categoriesWithCounts,
 }: any) => {
-  const { getCollapseProps, getToggleProps, isExpanded, setExpanded } = useCollapse();
+  const { getCollapseProps, getToggleProps, isExpanded, setExpanded } =
+    useCollapse();
   const [isInputEditing, setInputEditing] = useState(false);
   const layout = useStore(layoutView);
 
@@ -29,8 +30,13 @@ const ProductLayouts = ({
   };
 
   useEffect(() => {
-    const inputField = document.getElementById("searchInput") as HTMLInputElement;
-    if (isInputEditing || new URLSearchParams(window.location.search).get("q")) {
+    const inputField = document.getElementById(
+      "searchInput",
+    ) as HTMLInputElement;
+    if (
+      isInputEditing ||
+      new URLSearchParams(window.location.search).get("q")
+    ) {
       inputField?.focus();
     }
   }, [isInputEditing]);
@@ -58,27 +64,29 @@ const ProductLayouts = ({
   return (
     <section className="pt-4">
       <div className="container">
-        <div className="row">
-          <div className="col-3 max-lg:hidden" />
+        <div className="grid grid-cols-1 gap-4 lg:grid-cols-4">
+          <div className="max-lg:hidden" />
 
-          <div className="col-12 lg:col-9">
-            <div className="flex justify-between items-center mb-4">
-              <div className="flex gap-x-4 items-center font-medium text-xs md:text-base">
-                <p className="max-md:hidden text-dark dark:text-darkmode-dark">
+          <div className="col-span-1 lg:col-span-3">
+            <div className="mb-4 flex items-center justify-between">
+              <div className="flex items-center gap-x-4 text-xs font-medium md:text-base">
+                <p className="text-dark dark:text-darkmode-dark max-md:hidden">
                   Views
                 </p>
                 <div className="flex gap-2">
                   <button
                     onClick={() => layoutChange("card")}
-                    className={`btn border dark:border-darkmode-border ${layout === "list" ? "btn-outline-primary" : "btn-primary"
-                      } p-2 hover:scale-105 duration-300`}
+                    className={`btn dark:border-darkmode-border border ${
+                      layout === "list" ? "btn-outline-primary" : "btn-primary"
+                    } p-2 duration-300 hover:scale-105`}
                   >
                     <BsGridFill />
                   </button>
                   <button
                     onClick={() => layoutChange("list")}
-                    className={`btn border dark:border-darkmode-border ${layout === "list" ? "btn-primary" : "btn-outline-primary"
-                      } p-2 hover:scale-105 duration-300`}
+                    className={`btn dark:border-darkmode-border border ${
+                      layout === "list" ? "btn-primary" : "btn-outline-primary"
+                    } p-2 duration-300 hover:scale-105`}
                   >
                     <FaList />
                   </button>
@@ -86,22 +94,22 @@ const ProductLayouts = ({
               </div>
 
               <div className="flex gap-x-8">
-                <div className="filter-button-container block lg:hidden mt-1">
+                <div className="filter-button-container mt-1 block lg:hidden">
                   <button {...getToggleProps()}>
                     {isExpanded ? (
-                      <span className="font-medium text-base flex gap-x-1 items-center justify-center">
+                      <span className="flex items-center justify-center gap-x-1 text-base font-medium">
                         <TbFilterX /> Filter
                       </span>
                     ) : (
-                      <span className="font-medium text-base flex gap-x-1 items-center justify-center">
+                      <span className="flex items-center justify-center gap-x-1 text-base font-medium">
                         <TbFilter /> Filter
                       </span>
                     )}
                   </button>
                 </div>
 
-                <div className="flex gap-x-4 items-center font-medium text-sm md:text-base relative z-20">
-                  <p className="max-md:hidden text-dark dark:text-darkmode-dark">
+                <div className="relative z-20 flex items-center gap-x-4 text-sm font-medium md:text-base">
+                  <p className="text-dark dark:text-darkmode-dark max-md:hidden">
                     Sort By
                   </p>
                   <DropdownMenu list={sorting} />
@@ -110,11 +118,11 @@ const ProductLayouts = ({
             </div>
           </div>
 
-          <div className="col-12 lg:col-3">
-            <div className="lg:block relative">
-              <div className="block lg:hidden w-full">
+          <div className="col-span-1 lg:col-span-3">
+            <div className="relative lg:block">
+              <div className="block w-full lg:hidden">
                 <section
-                  className="collapse-container-class z-20 bg-body dark:bg-darkmode-body w-full px-4 rounded-md"
+                  className="collapse-container-class bg-body dark:bg-darkmode-body z-20 w-full rounded-md px-4"
                   {...getCollapseProps()}
                 >
                   <div className="pb-8">
