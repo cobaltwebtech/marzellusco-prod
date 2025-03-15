@@ -9,8 +9,6 @@
 @plugin "@tailwindcss/typography";
 @plugin "@tailwindcss/forms";
 
-@config "../../tailwind.config.mjs";
-
 @theme {
   /* Light mode colors */
   --color-text: theme(colors.neutral.800);

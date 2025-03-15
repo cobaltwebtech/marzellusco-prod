@@ -87,7 +87,7 @@ const VariantDropDown: React.FC<VariantDropDownProps> = ({
 
       {isOpen && (
         <ul
-          className="absolute z-20 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white ring-1 shadow-lg ring-black/5 focus:outline-none"
+          className="absolute z-20 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white shadow-lg ring-1 ring-black/5 focus:outline-none"
           role="listbox"
         >
           {sizeOption.values.map((size: string) => {

@@ -2,7 +2,7 @@ import React from "react";
 
 const SkeletonProductThumb = () => {
   return (
-    <div className="row justify-center">
+    <div className="justify-center">
       <div>
         <div className="mb-4 h-[323px] animate-pulse rounded-md bg-neutral-200 md:h-[623px] dark:bg-neutral-700"></div>
 

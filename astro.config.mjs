@@ -7,7 +7,7 @@ import { defineConfig } from "astro/config";
 import remarkCollapse from "remark-collapse";
 import remarkToc from "remark-toc";
 import config from "./src/config/config.json";
-import vercel from "@astrojs/vercel/serverless";
+import vercel from "@astrojs/vercel";
 import minify from "@playform/compress";
 import compressor from "astro-compressor";
 

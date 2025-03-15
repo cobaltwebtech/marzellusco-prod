@@ -143,39 +143,24 @@ const ProductGrid = ({
           const defaultVariantId =
             product?.variants.length > 0 ? product?.variants[0].id : undefined;
           return (
-            <div
-              key={index}
-              className="group col-12 sm:col-6 md:col-4 relative text-center"
-            >
+            <div key={index} className="text-center">
               <div className="overflow-hidden md:relative">
-                <img
-                  src={
-                    product.featuredImage?.url || "/images/product_image404.jpg"
-                  }
-                  width={312}
-                  height={269}
-                  alt={product.featuredImage?.altText || "fallback image"}
-                  className="border-border dark:border-darkmode-border mx-auto h-[200px] w-full rounded-md border object-cover sm:w-[312px] md:h-[269px]"
-                />
-
-                <AddToCart
-                  variants={product?.variants}
-                  availableForSale={product?.availableForSale}
-                  handle={product?.handle}
-                  defaultVariantId={defaultVariantId}
-                  stylesClass={
-                    "btn btn-primary max-md:btn-sm z-10 absolute bottom-24 md:bottom-0 left-1/2 transform -translate-x-1/2 md:translate-y-full md:group-hover:-translate-y-6 duration-300 ease-in-out whitespace-nowrap drop-shadow-md"
-                  }
-                />
+                <a href={`/products/${product?.handle}`}>
+                  <img
+                    src={
+                      product.featuredImage?.url ||
+                      "/images/product_image404.jpg"
+                    }
+                    width={312}
+                    height={269}
+                    alt={product.featuredImage?.altText || "fallback image"}
+                    className="border-border dark:border-darkmode-border mx-auto h-[200px] w-full rounded-md border object-cover sm:w-[312px] md:h-[269px]"
+                  />
+                </a>
               </div>
               <div className="z-20 py-2 text-center md:py-4">
                 <h2 className="text-base font-medium md:text-xl">
-                  <a
-                    className="after:absolute after:inset-0"
-                    href={`/products/${product?.handle}`}
-                  >
-                    {product?.title}
-                  </a>
+                  <a href={`/products/${product?.handle}`}>{product?.title}</a>
                 </h2>
                 <div className="mt-2 flex flex-wrap items-center justify-center gap-x-2 md:mt-4">
                   <span className="text-dark dark:text-darkmode-dark text-base font-bold md:text-xl">

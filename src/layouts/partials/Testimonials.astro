@@ -13,8 +13,8 @@ const { title, testimonials } = Astro.props;
 
 <section class="section">
   <div class="container">
-    <div class="row">
-      <div class="md:col-10 lg:col-8 xl:col-6 mx-auto mb-12 text-center">
+    <div>
+      <div class="mx-auto mb-12 text-center md:col-10 lg:col-8 xl:col-6">
         <h2 set:html={markdownify(title)} class="mb-4" />
       </div>
       <div class="testimonials-wrapper relative">
@@ -43,7 +43,7 @@ const { title, testimonials } = Astro.props;
                       </svg>
                     </div>
                     <blockquote
-                      class="md:col-10 lg:col-8 z-10 mx-auto mt-14 text-center"
+                      class="z-10 mx-auto mt-14 text-center md:col-10 lg:col-8"
                       set:html={markdownify(item.content)}
                     />
                     <div class="mt-11 flex flex-col items-center">

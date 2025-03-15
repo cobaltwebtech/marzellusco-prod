@@ -36,7 +36,7 @@ const DropdownMenu = ({ list }: { list: ListItem[] }) => {
     <div className="text-light relative inline-block text-left" ref={menuRef}>
       <button
         type="button"
-        className="hover:bg-light/10 inline-flex w-full justify-center gap-x-1.5 rounded-md bg-white px-3 py-2 text-sm font-semibold ring-1 shadow-sm ring-gray-300 ring-inset"
+        className="hover:bg-light/10 inline-flex w-full justify-center gap-x-1.5 rounded-md bg-white px-3 py-2 text-sm font-semibold shadow-sm ring-1 ring-gray-300 ring-inset"
         onClick={() => {
           setOpenSelect(!openSelect);
         }}
@@ -62,7 +62,7 @@ const DropdownMenu = ({ list }: { list: ListItem[] }) => {
 
       {openSelect && (
         <div
-          className="ring-opacity-5 absolute right-0 z-10 mt-2 w-56 origin-top-right overflow-hidden rounded-md bg-white ring-1 shadow-lg ring-black focus:outline-none"
+          className="ring-opacity-5 absolute right-0 z-10 mt-2 w-56 origin-top-right overflow-hidden rounded-md bg-white shadow-lg ring-1 ring-black focus:outline-none"
           onClick={() => {
             setOpenSelect(false);
           }}

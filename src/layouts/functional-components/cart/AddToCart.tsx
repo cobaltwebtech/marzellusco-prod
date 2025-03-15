@@ -43,13 +43,14 @@ function SubmitButton({
 
   if (hasMultipleVariants && !allOptionsSelected) {
     return (
-      <button
-        disabled
+      <DynamicTag
+        href={`/products/${handle}`}
+        aria-label="Please select an option"
         aria-disabled
-        className={`${buttonClasses} ${disabledClasses}`}
+        className={`${buttonClasses} ${DynamicTag === "button" ? disabledClasses : ""}`}
       >
         Select Options
-      </button>
+      </DynamicTag>
     );
   }
 
@@ -90,6 +91,7 @@ interface AddToCartProps {
   stylesClass: string;
   handle: string | null;
   defaultVariantId: string | undefined;
+  availableForSale?: boolean | undefined; // Optional prop for availableForSale
 }
 
 export function AddToCart({

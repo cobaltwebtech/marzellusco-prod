@@ -4,7 +4,7 @@ const SkeletonProducts = () => {
   return (
     <section className="pt-14 xl:pt-28">
       <div className="container">
-        <div className="row gy-4">
+        <div>
           <div className="col-12 lg:col-3">
             <div className="mb-4 hidden h-8 animate-pulse rounded-md bg-neutral-200 lg:block dark:bg-neutral-700" />
             <div className="hidden h-full animate-pulse rounded-md bg-neutral-200 lg:block dark:bg-neutral-700" />

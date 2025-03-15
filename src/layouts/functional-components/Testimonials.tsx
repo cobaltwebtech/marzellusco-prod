@@ -27,8 +27,8 @@ const Testimonials = ({
   return (
     <section className="section">
       <div className="container">
-        <div className="row">
-          <div className="md:col-10 lg:col-8 xl:col-6 mx-auto mb-12 text-center">
+        <div>
+          <div className="mx-auto mb-12 text-center md:col-10 lg:col-8 xl:col-6">
             <h2
               dangerouslySetInnerHTML={{ __html: markdownify(title) }}
               className="mb-4"
@@ -76,7 +76,7 @@ const Testimonials = ({
                       </svg>
                     </div>
                     <blockquote
-                      className="md:col-10 lg:col-8 z-10 mx-auto mt-14 text-center"
+                      className="z-10 mx-auto mt-14 text-center md:col-10 lg:col-8"
                       dangerouslySetInnerHTML={{
                         __html: markdownify(item.content),
                       }}

@@ -4,7 +4,7 @@ const SkeletonProductGallery = () => {
     <>
       <section className="md:section-sm">
         <div className="container">
-          <div className="row justify-center">
+          <div className="justify-center">
             {/* right side contents  */}
             <div className="col-10 md:col-8 lg:col-6">
               <div className="mb-4 h-[323px] animate-pulse rounded-md bg-neutral-200 md:h-[623px] dark:bg-neutral-700"></div>
@@ -23,7 +23,7 @@ const SkeletonProductGallery = () => {
             </div>
 
             {/* left side contents  */}
-            <div className="col-10 md:col-8 lg:col-5 py-6 md:ml-7 lg:py-0">
+            <div className="col-10 py-6 md:col-8 md:ml-7 lg:col-5 lg:py-0">
               {Array(8)
                 .fill(0)
                 .map((_, index) => {

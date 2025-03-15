@@ -68,8 +68,8 @@ const SignUpForm = () => {
   return (
     <section className="section">
       <div className="container">
-        <div className="row">
-          <div className="col-11 sm:col-9 md:col-7 mx-auto">
+        <div>
+          <div className="col-11 mx-auto sm:col-9 md:col-7">
             <div className="mb-14 text-center">
               <h2 className="max-md:h1 md:mb-2">Create an account</h2>
               <p className="md:text-lg">Create an account and start using...</p>
