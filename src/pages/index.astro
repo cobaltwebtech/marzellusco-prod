@@ -14,7 +14,7 @@ import VideoHero from "@/components/VideoHero.astro";
 const { collections } = config.shopify;
 const collectionProducts = await getCollections();
 const sliderData = await getEntry("sections", "slideshow");
-const { slides } = sliderData.data;
+const { slides } = sliderData?.data;
 
 // Fetch featured products
 const { products: featuredProducts } = await getCollectionProducts({
