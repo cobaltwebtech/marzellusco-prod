@@ -4490,6 +4490,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"inner-image-zoom@npm:1.0.1":
+  version: 1.0.1
+  resolution: "inner-image-zoom@npm:1.0.1"
+  checksum: 10c0/09e39ddf94c874e8c08bfbc48bb7380eb18264a0bcd937caf01e6a7593ffd2bcb854f11a0899f827026fc365e6269ce34d972bfa5254f08d661eeb4425397c2b
+  languageName: node
+  linkType: hard
+
 "ip-address@npm:^9.0.5":
   version: 9.0.5
   resolution: "ip-address@npm:9.0.5"
@@ -5257,7 +5264,7 @@ __metadata:
     react-dom: "npm:^19.1.0"
     react-gravatar: "npm:^2.6.3"
     react-icons: "npm:^5.5.0"
-    react-inner-image-zoom: "npm:^3.0.2"
+    react-inner-image-zoom: "npm:^4.0.1"
     react-lite-youtube-embed: "npm:^2.4.0"
     remark-collapse: "npm:^0.1.2"
     remark-toc: "npm:^9.0.0"
@@ -6877,13 +6884,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-inner-image-zoom@npm:^3.0.2":
-  version: 3.0.2
-  resolution: "react-inner-image-zoom@npm:3.0.2"
+"react-inner-image-zoom@npm:^4.0.1":
+  version: 4.0.1
+  resolution: "react-inner-image-zoom@npm:4.0.1"
+  dependencies:
+    inner-image-zoom: "npm:1.0.1"
   peerDependencies:
-    prop-types: ">=15.6.2"
     react: ">=16.8.0"
-  checksum: 10c0/ccd2a0c1b55f94b4efe0d90542cb386b161d4629bb4fcc58c6c1b86e863cba9817f7a8cdaa1387156fff9cd049067eea92dc5d02a51e05674396fe2772f70975
+  checksum: 10c0/20c23de1969b30883b008de62782fa32aac964bb1e66cd2344240f26a51a20b1c295084f528b53997fc2fc51088f446a1ef34033893b9292b51f8d8f88a2438a
   languageName: node
   linkType: hard
 
