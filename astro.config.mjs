@@ -2,6 +2,7 @@ import mdx from "@astrojs/mdx";
 import react from "@astrojs/react";
 import sitemap from "@astrojs/sitemap";
 import tailwindcss from "@tailwindcss/vite";
+import sentry from "@sentry/astro";
 import AutoImport from "astro-auto-import";
 import { defineConfig } from "astro/config";
 import remarkCollapse from "remark-collapse";
@@ -40,6 +41,21 @@ export default defineConfig({
       ],
     }),
     mdx(),
+    ...(isProduction
+      ? [
+          sentry({
+            dsn: "https://74506a8a8661472c034c2d02ccb0f25f@o4508880993058816.ingest.us.sentry.io/4509155007070208",
+            tracesSampleRate: 0,
+            replaysSessionSampleRate: 0,
+            replaysOnErrorSampleRate: 0,
+            sourceMapsUploadOptions: {
+              project: "marzellus",
+              authToken: process.env.SENTRY_AUTH_TOKEN,
+            },
+          }),
+        ]
+      : []
+    ),
     minify({
       CSS: false,
       HTML: true,
