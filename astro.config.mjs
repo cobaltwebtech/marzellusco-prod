@@ -12,7 +12,8 @@ import vercel from "@astrojs/vercel";
 import minify from "@playform/compress";
 import compressor from "astro-compressor";
 
-// https://astro.build/config
+const isProduction = process.env.NODE_ENV === "production";
+
 export default defineConfig({
   site: config.site.base_url ? config.site.base_url : "https://marzellusco.com",
   base: config.site.base_path ? config.site.base_path : "/",
@@ -54,8 +55,7 @@ export default defineConfig({
             },
           }),
         ]
-      : []
-    ),
+      : []),
     minify({
       CSS: false,
       HTML: true,
