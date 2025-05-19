@@ -2976,12 +2976,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react@npm:*, @types/react@npm:^19.1.2":
+"@types/react@npm:*":
   version: 19.1.2
   resolution: "@types/react@npm:19.1.2"
   dependencies:
     csstype: "npm:^3.0.2"
   checksum: 10c0/76ffe71395c713d4adc3c759465012d3c956db00af35ab7c6d0d91bd07b274b7ce69caa0478c0760311587bd1e38c78ffc9688ebc629f2b266682a19d8750947
+  languageName: node
+  linkType: hard
+
+"@types/react@npm:^19.1.4":
+  version: 19.1.4
+  resolution: "@types/react@npm:19.1.4"
+  dependencies:
+    csstype: "npm:^3.0.2"
+  checksum: 10c0/501350d4f9cef13c5dd1b1496fa70ebaff52f6fa359b623b51c9d817e5bc4333fa3c8b7a6a4cbc88c643385052d66a243c3ceccfd6926062f917a2dd0535f6b3
   languageName: node
   linkType: hard
 
@@ -6750,7 +6759,7 @@ __metadata:
     "@types/js-cookie": "npm:^3.0.6"
     "@types/marked": "npm:^6.0.0"
     "@types/node": "npm:^22.14.1"
-    "@types/react": "npm:^19.1.2"
+    "@types/react": "npm:^19.1.4"
     "@types/react-dom": "npm:^19.1.2"
     "@types/react-gravatar": "npm:^2.6.14"
     "@types/react-inner-image-zoom": "npm:^3.0.3"
