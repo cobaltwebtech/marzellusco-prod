@@ -2884,7 +2884,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:*, @types/node@npm:^22.14.1":
+"@types/node@npm:*":
   version: 22.14.1
   resolution: "@types/node@npm:22.14.1"
   dependencies:
@@ -2915,6 +2915,15 @@ __metadata:
   dependencies:
     undici-types: "npm:~5.26.4"
   checksum: 10c0/1017c4ba61661ab30e4b4a78040cb66980919549f56d85755326dcccbe7a0405be7d6be1b2a91bace8eaef0d2a24b63d4f104b381be7f957c2483e465d829690
+  languageName: node
+  linkType: hard
+
+"@types/node@npm:^22.15.19":
+  version: 22.15.19
+  resolution: "@types/node@npm:22.15.19"
+  dependencies:
+    undici-types: "npm:~6.21.0"
+  checksum: 10c0/8ef52fa1a91b1c8891616d46f3921a9f3c65ad1c6bb62db7899c8c28643c13bf9d607a2403b1e5aceb3e6fa6749efc9e0ba5c39618a4872da6946437b0edbfbe
   languageName: node
   linkType: hard
 
@@ -6749,7 +6758,7 @@ __metadata:
     "@tailwindcss/vite": "npm:^4.1.4"
     "@types/js-cookie": "npm:^3.0.6"
     "@types/marked": "npm:^6.0.0"
-    "@types/node": "npm:^22.14.1"
+    "@types/node": "npm:^22.15.19"
     "@types/react": "npm:^19.1.2"
     "@types/react-dom": "npm:^19.1.2"
     "@types/react-gravatar": "npm:^2.6.14"
