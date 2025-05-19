@@ -26,7 +26,7 @@
     "@nanostores/react": "^1.0.0",
     "@playform/compress": "^0.1.9",
     "@sentry/astro": "^9.15.0",
-    "@tailwindcss/vite": "^4.1.4",
+    "@tailwindcss/vite": "^4.1.7",
     "@vercel/analytics": "^1.5.0",
     "astro": "5.7.10",
     "astro-auto-import": "^0.4.4",
