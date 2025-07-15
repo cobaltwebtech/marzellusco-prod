@@ -68,13 +68,23 @@ export interface ISocial {
           &copy;<span id="copyright-year">{currentYear}</span> Marzellus - All Rights
           Reserved
         </p>
+        <p class="text-right text-sm font-light">
+          Website and cloud infrastructure built by <br />
+          <a
+            href="https://www.cobaltweb.tech/?utm_source=marzellus&utm_medium=web&utm_campaign=client-referral&utm_content=link"
+            rel="noopener"
+            target="_blank"
+            class="text-nowrap; underline">Cobalt Web Technologies</a
+          >.
+        </p>
       </div>
     </div>
   </div>
   <!-- Set current year with client-side script -->
   <script>
-    document.getElementById("copyright-year").textContent = new Date()
-      .getFullYear()
-      .toString();
+    const copyrightYear = document.getElementById("copyright-year");
+    if (copyrightYear) {
+      copyrightYear.textContent = new Date().getFullYear().toString();
+    }
   </script>
 </footer>
