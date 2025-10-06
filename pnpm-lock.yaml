@@ -48,8 +48,8 @@ importers:
         specifier: 5.14.1
         version: 5.14.1(@types/node@24.6.1)(@vercel/functions@2.2.13)(jiti@2.6.1)(lightningcss@1.30.1)(rollup@4.52.3)(terser@5.42.0)(typescript@5.9.3)(yaml@2.8.1)
       astro-auto-import:
-        specifier: ^0.4.4
-        version: 0.4.4(astro@5.14.1(@types/node@24.6.1)(@vercel/functions@2.2.13)(jiti@2.6.1)(lightningcss@1.30.1)(rollup@4.52.3)(terser@5.42.0)(typescript@5.9.3)(yaml@2.8.1))
+        specifier: ^0.4.5
+        version: 0.4.5(astro@5.14.1(@types/node@24.6.1)(@vercel/functions@2.2.13)(jiti@2.6.1)(lightningcss@1.30.1)(rollup@4.52.3)(terser@5.42.0)(typescript@5.9.3)(yaml@2.8.1))
       astro-compressor:
         specifier: ^1.1.2
         version: 1.1.2
@@ -1783,8 +1783,8 @@ packages:
     resolution: {integrity: sha512-LElXdjswlqjWrPpJFg1Fx4wpkOCxj1TDHlSV4PlaRxHGWko024xICaa97ZkMfs6DRKlCguiAI+rbXv5GWwXIkg==}
     hasBin: true
 
-  astro-auto-import@0.4.4:
-    resolution: {integrity: sha512-tiYe1hp+VusdiyaD3INgZgbvXEPamDFiURnQR5Niz+E9fWa6IHYjJ99TwGlHh/evfaXE/U/86jp9MRKWTuJU1A==}
+  astro-auto-import@0.4.5:
+    resolution: {integrity: sha512-KU1qFJ97Qks2aT+qSxjrOY6tcwzzLVhY/8w1eM8vwqpP+MDpHKAlbr8Otg9T8g/Mfl/FOdG3nO9lydv1zbtyQA==}
     engines: {node: '>=16.0.0'}
     peerDependencies:
       astro: ^2.0.0 || ^3.0.0-beta || ^4.0.0-beta || ^5.0.0-beta
@@ -6070,7 +6070,7 @@ snapshots:
 
   astring@1.9.0: {}
 
-  astro-auto-import@0.4.4(astro@5.14.1(@types/node@24.6.1)(@vercel/functions@2.2.13)(jiti@2.6.1)(lightningcss@1.30.1)(rollup@4.52.3)(terser@5.42.0)(typescript@5.9.3)(yaml@2.8.1)):
+  astro-auto-import@0.4.5(astro@5.14.1(@types/node@24.6.1)(@vercel/functions@2.2.13)(jiti@2.6.1)(lightningcss@1.30.1)(rollup@4.52.3)(terser@5.42.0)(typescript@5.9.3)(yaml@2.8.1)):
     dependencies:
       '@types/node': 18.19.129
       acorn: 8.15.0
